@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - HomeFinder</title>
+    <!-- Google Fonts (Poppins) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <style>
+        /* --- Basic Reset & Global Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #d90429;
+            --primary-gradient: linear-gradient(45deg, #d90429, #ef233c);
+            --dark-bg: #2b2d42;
+            --dark-bg-gradient: linear-gradient(90deg, #2b2d42, #4a4e69);
+            --light-text: #edf2f4;
+            --dark-text: #333;
+            --secondary-bg: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--dark-bg);
+            text-align: center;
+        }
+        
+        /* --- Header & Navigation --- */
+        header {
+            background: #fff;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo a {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-bg);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        /* --- Page Hero Section (with Gradient) --- */
+        .page-hero {
+            padding: 60px 20px;
+            text-align: center;
+            color: var(--light-text);
+            /* GRADIENT USAGE 1: Section Background */
+            background: var(--dark-bg-gradient);
+        }
+
+        .page-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+        
+        /* --- Our Story Section --- */
+        .our-story {
+            padding: 80px 0;
+        }
+
+        .our-story .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .story-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .story-content h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--dark-bg);
+        }
+
+        .story-content p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        /* --- Our Values Section --- */
+        .our-values {
+            padding: 80px 0;
+            background: var(--secondary-bg);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .value-item i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #fff;
+            /* GRADIENT USAGE 2: Icon background */
+            background: var(--primary-gradient);
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .value-item:hover i {
+            transform: scale(1.1);
+        }
+        
+        .value-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark-bg);
+        }
+
+        .value-item p {
+            color: #666;
+        }
+        
+        /* --- Team Section --- */
+        .team-section {
+            padding: 80px 0;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .team-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .team-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 4px solid var(--secondary-bg);
+        }
+        
+        .team-card h3 {
+            font-size: 1.2rem;
+            color: var(--dark-text);
+        }
+
+        .team-card .role {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+            /* GRADIENT USAGE 3: Text color */
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 768px) {
+            h2 { font-size: 2rem; }
+            .our-story .container { grid-template-columns: 1fr; }
+            nav ul { display: none; /* For a real site, implement a hamburger menu here */ }
+        }
+        /* --- Back to Home Button --- */
+.back-to-home {
+    padding: 0 0 80px; /* Adds space at the bottom */
+    text-align: center;
+}
+
+.home-button {
+    display: inline-block;
+    padding: 15px 35px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--light-text);
+    background: var(--dark-bg); /* Matches the footer for consistency */
+    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.home-button:hover {
+    background: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.home-button i {
+    margin-right: 8px;
+}
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">HomeFinder</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html" class="active">About Us</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Listings</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Page Hero Section -->
+        <section class="page-hero">
+            <h1>About HomeFinder</h1>
+        </section>
+
+        <!-- Our Story Section -->
+        <section class="our-story">
+            <div class="container">
+                <div class="story-image">
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2232&auto=format&fit=crop" alt="A team of professionals collaborating in an office">
+                </div>
+                <div class="story-content">
+                    <h3>Our Mission: Simplifying Your Search for Home</h3>
+                    <p>HomeFinder was founded on a simple principle: finding a rental home should be an exciting and stress-free experience. We were tired of the complicated, time-consuming, and often frustrating process of searching for a place to live.</p>
+                    <p>Our mission is to connect renters with their perfect homes through a transparent, user-friendly platform. We leverage technology to provide high-quality listings, virtual tours, and a direct line of communication between renters and property owners, making the entire journey seamless and secure.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Values Section -->
+        <section class="our-values">
+            <div class="container">
+                <h2>Why Choose Us?</h2>
+                <div class="values-grid">
+                    <div class="value-item">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Verified Listings</h3>
+                        <p>Every property is carefully vetted by our team to ensure quality and accuracy.</p>
+                    </div>
+                    <div class="value-item">
+                        <i class="fas fa-user-shield"></i>
+                        <h3>Unmatched Security</h3>
+                        <p>We prioritize your safety with secure messaging, payments, and data protection.</p>
+                    </div>
+                    <div class="value-item">
+                        <i class="fas fa-headset"></i>
+                        <h3>24/7 Support</h3>
+                        <p>Our dedicated support team is always available to assist you with any questions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="team-section">
+            <div class="container">
+                <h2>Meet Our Team</h2>
+                <div class="team-grid">
+                    <!-- Team Member 1 -->
+                    <div class="team-card">
+                        <!-- <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=1974&auto=format&fit=crop" alt="Portrait of John Doe"> -->
+                        <h3>John Doe</h3>
+                        <p class="role">Lead Agent</p>
+                    </div>
+                    <!-- Team Member 2 -->
+                    <div class="team-card">
+                        <!-- <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070&auto=format&fit=crop" alt="Portrait of Jane Smith"> -->
+                        <h3>Jane Smith</h3>
+                        <p class="role">Marketing Director</p>
+                    </div>
+                    <!-- Team Member 3 -->
+                    <div class="team-card">
+                        <!-- <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop" alt="Portrait of Mike Johnson"> -->
+                        <h3>Mike Johnson</h3>
+                        <p class="role">Client Relations</p>
+                    </div>
+                    <div class="team-card">
+                        <h3>Emily White</h3>
+                        <p class="role">Lead Developer</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Add this section before the closing </main> tag -->
+<section class="back-to-home">
+    <div class="container">
+        <a href="home.html" class="home-button">
+            <i class="fas fa-arrow-left"></i> Back to Homepage
+        </a>
+    </div>
+</section>
+
+    </main>
+    
+
+    <footer>
+        <p>&copy; 2025 HomeFinder. All Rights Reserved.</p>
+    </footer>
+
+
+</body>
+</html>

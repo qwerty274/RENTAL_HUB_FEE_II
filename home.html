@@ -1,150 +1,365 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Rental Hub</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeFinder - Find Your Perfect Rental Home</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <!-- Google Fonts (Poppins) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+    /* --- Basic Reset & Global Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #d90429; /* A strong red */
+    --dark-bg: #2b2d42;
+    --light-text: #edf2f4;
+    --dark-text: #333;
+    --secondary-bg: #f8f9fa;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--dark-text);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/* --- Header & Navigation --- */
+header {
+    background: #fff;
+    padding: 1rem 0;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--dark-bg);
+}
+
+nav ul {
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--primary-color);
+}
+
+/* --- Hero Section --- */
+.hero {
+    height: 70vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--light-text);
+    padding: 0 20px;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.hero-content .highlight-text {
+    color: var(--primary-color);
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.cta-button {
+    background: var(--primary-color);
+    color: #fff;
+    padding: 15px 35px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cta-button:hover {
+    background: #e5383b;
+    transform: translateY(-2px);
+}
+
+/* --- Info Bar Section --- */
+.info-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    color: var(--light-text);
+}
+
+.info-item {
+    padding: 30px;
+    text-align: center;
+    background-color: var(--dark-bg);
+}
+
+.info-item.highlight {
+    background-color: var(--primary-color);
+}
+
+.info-item i {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.info-item h3 {
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.info-item p {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* --- Featured Listings Section --- */
+.featured-listings {
+    padding: 80px 0;
+    background: var(--secondary-bg);
+}
+
+.featured-listings h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    color: var(--dark-bg);
+}
+
+.listings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.property-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.property-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.property-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card-specs {
+    display: flex;
+    gap: 20px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.card-specs i {
+    margin-right: 5px;
+    color: var(--dark-bg);
+}
+
+.card-footer h3 {
+    font-size: 1.25rem;
+    margin-bottom: 5px;
+    color: var(--dark-text);
+}
+
+.card-footer .price {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+/* --- Footer --- */
+footer {
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+    text-align: center;
+    padding: 20px;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
     }
-
-    body {
-      background-color: #f0f4f8;
-      color: #333;
+    .info-bar {
+        grid-template-columns: 1fr;
     }
-
-    /* Navbar */
-    .navbar {
-      background-color: #2d3e50;
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 1000;
-      color: white;
+    nav ul {
+        display: none; /* For a real site, implement a hamburger menu here */
     }
+}
 
-    .navbar h1 {
-      font-size: 24px;
-      color: #fff;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 25px;
-    }
-
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
-
-    .nav-links a:hover {
-      color: #ffcc00;
-    }
-
-    /* Hero Section */
-    .hero {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: url('https://images.unsplash.com/photo-1568605114967-8130f3a36994') no-repeat center center/cover;
-      text-align: center;
-      color: white;
-      padding-top: 80px;
-    }
-
-    .hero h2 {
-      font-size: 3rem;
-      background: rgba(0, 0, 0, 0.5);
-      padding: 20px 30px;
-      border-radius: 10px;
-    }
-
-    /* Slider Section */
-    .slider {
-      margin-top: 0;
-      width: 100%;
-      height: 500px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .slides {
-      display: flex;
-      width: 300%;
-      height: 100%;
-      animation: slide 15s infinite;
-    }
-
-    .slides img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    @keyframes slide {
-      0% { transform: translateX(0%); }
-      33% { transform: translateX(-100%); }
-      66% { transform: translateX(-200%); }
-      100% { transform: translateX(0%); }
-    }
-
-    @media (max-width: 768px) {
-      .hero h2 {
-        font-size: 2rem;
-        padding: 15px;
-      }
-
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .nav-links {
-        flex-direction: column;
-        gap: 10px;
-        margin-top: 10px;
-      }
-    }
-  </style>
+</style>
 </head>
+
 <body>
 
-  <!-- Navbar -->
-  <div class="navbar">
-    <h1>Rental Hub</h1>
-    <div class="nav-links">
-      <a href="#">Home</a>
-      <a href="#">Listings</a>
-      <a href="#">About</a>
-      <a href="#">Contact</a>
-      <a href="#">Login</a>
-    </div>
-  </div>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="#">HomeFinder</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="listing.html">Listings</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Log In</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-  <!-- Hero Section -->
-  <div class="hero">
-    <h2>Live Your Dream Life In Dream House.</h2>
-  </div>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Find Your Perfect <span class="highlight-text">Rental Home</span></h1>
+                <p>Search thousands of listings to find the key to your new home.</p>
+                <a href="#" class="cta-button">Search Properties</a>
+            </div>
+        </section>
 
-  <!-- Image Slider -->
-  <div class="slider">
-    <div class="slides">
-      <img src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c" alt="House 1">
-      <img src="https://images.unsplash.com/photo-1599423300746-b62533397364" alt="House 2">
-      <img src="https://images.unsplash.com/photo-1560185008-cfa4d127a5fb" alt="House 3">
-    </div>
-  </div>
+        <!-- Info Bar Section -->
+        <section class="info-bar">
+            <div class="info-item">
+                <i class="fas fa-phone"></i>
+                <h3>PHONE NO</h3>
+                <p>123-456-7890</p>
+            </div>
+            <div class="info-item highlight">
+                <i class="fas fa-envelope"></i>
+                <h3>EMAIL ADDRESS</h3>
+                <p>contact@homefinder.com</p>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>LOCATION</h3>
+                <p>123, Main Street, USA</p>
+            </div>
+        </section>
+
+        <!-- Featured Listings Section -->
+        <section class="featured-listings">
+            <div class="container">
+                <h2>Featured Properties</h2>
+                <div class="listings-grid">
+                    <!-- Property Card 1 -->
+                    <div class="property-card">
+                        <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=2070&auto=format&fit=crop" alt="Modern Suburban House">
+                        <div class="card-content">
+                            <div class="card-specs">
+                                <span><i class="fas fa-bed"></i> 4 Beds</span>
+                                <span><i class="fas fa-bath"></i> 3 Baths</span>
+                                <span><i class="fas fa-ruler-combined"></i> 2,200 sqft</span>
+                            </div>
+                            <div class="card-footer">
+                                <h3>Modern Suburban House</h3>
+                                <p class="price">$2,800/month</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Property Card 2 -->
+                    <div class="property-card">
+                        <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1974&auto=format&fit=crop" alt="Luxury Villa">
+                        <div class="card-content">
+                             <div class="card-specs">
+                                <span><i class="fas fa-bed"></i> 5 Beds</span>
+                                <span><i class="fas fa-bath"></i> 5 Baths</span>
+                                <span><i class="fas fa-ruler-combined"></i> 4,500 sqft</span>
+                            </div>
+                            <div class="card-footer">
+                                <h3>Luxury Villa with Pool</h3>
+                                <p class="price">$5,500/month</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Property Card 3 -->
+                    <div class="property-card">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" alt="Cozy Family Home">
+                        <div class="card-content">
+                             <div class="card-specs">
+                                <span><i class="fas fa-bed"></i> 3 Beds</span>
+                                <span><i class="fas fa-bath"></i> 2 Baths</span>
+                                <span><i class="fas fa-ruler-combined"></i> 1,800 sqft</span>
+                            </div>
+                            <div class="card-footer">
+                                <h3>Cozy Family Home</h3>
+                                <p class="price">$2,100/month</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 HomeFinder. All Rights Reserved.</p>
+    </footer>
 
 </body>
 </html>
