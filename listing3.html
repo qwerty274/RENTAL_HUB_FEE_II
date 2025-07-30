@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listings - Page 3 - HomeFinder</title>
+    <!-- [Head content is the same as above] -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <style>
+        /* --- [All CSS styles are identical to listing.html above] --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --primary-color: #d90429; --primary-gradient: linear-gradient(45deg, #d90429, #ef233c); --dark-bg: #2b2d42; --dark-bg-gradient: linear-gradient(90deg, #2b2d42, #4a4e69); --light-text: #edf2f4; --dark-text: #333; --secondary-bg: #f8f9fa; }
+        body { font-family: 'Poppins', sans-serif; line-height: 1.6; color: var(--dark-text); background-color: var(--secondary-bg); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        header { background: #fff; padding: 1rem 0; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 1000; }
+        header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo a { font-size: 1.8rem; font-weight: 700; color: var(--dark-bg); }
+        nav ul { display: flex; gap: 30px; margin-right: 192px;}
+        nav a { font-weight: 500; transition: color 0.3s ease; }
+        nav a:hover, nav a.active { color: var(--primary-color); }
+        .page-hero { padding: 60px 20px; text-align: center; color: var(--light-text); background: var(--dark-bg-gradient); }
+        .page-hero h1 { font-size: 3rem; font-weight: 700; }
+        .filter-section { padding: 40px 0; background: #fff; border-bottom: 1px solid #eee; }
+        .filter-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; align-items: center; }
+        .filter-group { display: flex; flex-direction: column; }
+        .filter-group label { font-size: 0.9rem; font-weight: 500; margin-bottom: 8px; color: #555; }
+        .filter-group input, .filter-group select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-family: 'Poppins', sans-serif; font-size: 1rem; }
+        .filter-button { padding: 14px 20px; background: var(--primary-gradient); color: #fff; border: none; border-radius: 5px; cursor: pointer; font-size: 1rem; font-weight: 600; transition: opacity 0.3s ease; align-self: end; }
+        .filter-button:hover { opacity: 0.9; }
+        .listings-section { padding: 80px 0; }
+        .listings-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .property-card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .property-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12); }
+        .property-card img { width: 100%; height: 220px; object-fit: cover; display: block; }
+        .card-content { padding: 20px; }
+        .card-specs { display: flex; gap: 20px; padding-bottom: 15px; margin-bottom: 15px; border-bottom: 1px solid #eee; color: #666; font-size: 0.9rem; }
+        .card-specs i { margin-right: 5px; color: var(--dark-bg); }
+        .card-footer h3 { font-size: 1.25rem; margin-bottom: 5px; color: var(--dark-text); }
+        .card-footer .price { font-size: 1.2rem; font-weight: 600; color: var(--primary-color); }
+        .pagination { display: flex; justify-content: center; align-items: center; margin-top: 60px; gap: 10px; }
+        .pagination a { display: block; padding: 10px 18px; border-radius: 5px; color: var(--dark-bg); background: #fff; border: 1px solid #ddd; font-weight: 500; transition: background 0.3s ease, color 0.3s ease; }
+        .pagination a:hover, .pagination a.active { color: #fff; background: var(--primary-color); border-color: var(--primary-color); }
+        footer { background-color: var(--dark-bg); color: var(--light-text); text-align: center; padding: 20px; }
+        @media (max-width: 768px) { nav ul { display: none; } }
+
+        .logo a {
+        display: flex; /* Aligns image and text side-by-side */
+        align-items: center; /* Vertically centers them */
+        gap: 10px; /* Adds a small space between the logo and text */
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--dark-bg);
+        }
+
+        .logo img {
+        height: 40px; /* Adjust the height of your logo as needed */
+        width: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+            <a href="home.html">
+            <img src="logo.png" alt="HomeFinder Logo">
+            <span>HomeFinder</span>
+            </a>
+        </div>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="listing.html" class="active">Listings</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="login.html">Log In</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="page-hero"><h1>Explore Our Properties</h1></section>
+        <section class="filter-section"><!-- Filter form remains the same --></section>
+        <section class="listings-section">
+            <div class="container">
+                <div class="listings-grid">
+                    <!-- Property Card 13 -->
+                    <div class="property-card">
+                        <img src="https://imgs.search.brave.com/lbrKa7LeldKPxcl2JacnTMX-6SrtxVb1sSKzOfDFhpM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9ibG9n/LnN0dWRpb3MybGV0/LmNvbS93cC1jb250/ZW50L3VwbG9hZHMv/MjAxOS8wOS9sb25k/b24tc3R1ZGlvLWZs/YXQtcmVudC0wMDUu/anBn" alt="Urban Studio Flat">
+                        <div class="card-content">
+                            <div class="card-specs"><span><i class="fas fa-bed"></i> 1 Bed</span><span><i class="fas fa-bath"></i> 1 Bath</span><span><i class="fas fa-ruler-combined"></i> 650 sqft</span></div>
+                            <div class="card-footer"><h3>Urban Studio Flat</h3><p class="price">$1,750/month</p></div>
+                        </div>
+                    </div>
+                    <!-- Property Card 14 -->
+                    <div class="property-card">
+                        <img src="https://imgs.search.brave.com/1fCfVVSKZn4-k1zx_2IA-cV2CX-fG6GK4b7Mne4JbIc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/Ym9va29udGhlYnJp/Z2h0c2lkZS5jb20v/cGFya3NpZGVyZXNv/cnQvc21hbGwvNjA0/LmpwZw" alt="Mountain View Lodge">
+                        <div class="card-content">
+                            <div class="card-specs"><span><i class="fas fa-bed"></i> 4 Beds</span><span><i class="fas fa-bath"></i> 3 Baths</span><span><i class="fas fa-ruler-combined"></i> 2,900 sqft</span></div>
+                            <div class="card-footer"><h3>Mountain View Lodge</h3><p class="price">$3,500/month</p></div>
+                        </div>
+                    </div>
+                    <!-- Property Card 15 -->
+                    <div class="property-card">
+                        <img src="https://images.unsplash.com/photo-1598228723793-52759bba239c?q=80&w=1974&auto=format&fit=crop" alt="Country Farmhouse">
+                        <div class="card-content">
+                            <div class="card-specs"><span><i class="fas fa-bed"></i> 3 Beds</span><span><i class="fas fa-bath"></i> 2 Baths</span><span><i class="fas fa-ruler-combined"></i> 2,100 sqft</span></div>
+                            <div class="card-footer"><h3>Country Farmhouse</h3><p class="price">$2,250/month</p></div>
+                        </div>
+                    </div>
+                    <!-- Property Card 16 -->
+                    <div class="property-card">
+                        <img src="https://images.unsplash.com/photo-1541123356219-284ebe98ae3b?q=80&w=2070&auto=format&fit=crop" alt="Artistic Loft Space">
+                        <div class="card-content">
+                            <div class="card-specs"><span><i class="fas fa-bed"></i> 2 Beds</span><span><i class="fas fa-bath"></i> 2 Baths</span><span><i class="fas fa-ruler-combined"></i> 1,600 sqft</span></div>
+                            <div class="card-footer"><h3>Artistic Loft Space</h3><p class="price">$2,800/month</p></div>
+                        </div>
+                    </div>
+                    <!-- Property Card 17 -->
+                    <div class="property-card">
+                        <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1980&auto=format&fit=crop" alt="Modern Condo">
+                        <div class="card-content">
+                            <div class="card-specs"><span><i class="fas fa-bed"></i> 1 Bed</span><span><i class="fas fa-bath"></i> 1 Bath</span><span><i class="fas fa-ruler-combined"></i> 800 sqft</span></div>
+                            <div class="card-footer"><h3>Modern Condo</h3><p class="price">$2,150/month</p></div>
+                        </div>
+                    </div>
+                    <!-- Property Card 18 -->
+                    <div class="property-card">
+                        <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=2070&auto=format&fit=crop" alt="Family Home Near School">
+                        <div class="card-content">
+                            <div class="card-specs"><span><i class="fas fa-bed"></i> 4 Beds</span><span><i class="fas fa-bath"></i> 2.5 Baths</span><span><i class="fas fa-ruler-combined"></i> 2,400 sqft</span></div>
+                            <div class="card-footer"><h3>Family Home Near School</h3><p class="price">$3,100/month</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pagination">
+                    <a href="listing2.html">&laquo;</a>
+                    <a href="listing.html">1</a>
+                    <a href="listing2.html">2</a>
+                    <a href="#" class="active">3</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer><p>&copy; 2025 HomeFinder. All Rights Reserved.</p></footer>
+</body>
+</html>
