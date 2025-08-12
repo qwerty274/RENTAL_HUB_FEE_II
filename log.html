@@ -347,21 +347,34 @@
                 margin: .5rem;
                 font-size: 2rem;
             }
+            .logo a {
+            display: flex; /* Aligns image and text side-by-side */
+            align-items: center; /* Vertically centers them */
+            gap: 10px; /* Adds a small space between the logo and text */
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-bg);
+        }
+
+        .logo img {
+            height: -30px; /* Adjust the height of your logo as needed */
+            width: auto;
+        }
+
         }
     </style>
 </head>
 <body>
-
     <header>
         <nav class="navbar">
-            <a href="#" class="logo">Home<span>Finder</span></a>
+             <a href="logo.png" class="logo">Home<span>Finder</span></a>
             <ul class="nav-links">
-                <li><a href="home.html">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="listing.html">Listings</a></li>
                 <li><a href="contact.html">Contact Us</a></li>
-                <li><a href="log.html" class="login-link">Log in</a></li>
+                <li><a href="log.html" class="login-link">Log in/Signup</a></li>
             </ul>
         </nav>
     </header>
