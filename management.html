@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Management - HomeFinder</title>
+    <!-- Google Fonts (Poppins) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <style>
+        /* --- Basic Reset & Global Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #d90429;
+            --primary-gradient: linear-gradient(45deg, #d90429, #ef233c);
+            --dark-bg: #2b2d42;
+            --dark-bg-gradient: linear-gradient(90deg, #2b2d42, #4a4e69);
+            --light-text: #edf2f4;
+            --dark-text: #333;
+            --secondary-bg: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--dark-bg);
+            text-align: center;
+        }
+        
+        /* --- Header & Navigation --- */
+        header {
+            background: #fff;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo a {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-bg);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        /* --- Page Hero Section --- */
+        .page-hero {
+            padding: 60px 20px;
+            text-align: center;
+            background: var(--dark-bg-gradient);
+            color: var(--light-text);
+        }
+
+        .page-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* --- Services Section --- */
+        .services-section {
+            padding: 80px 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .service-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--dark-bg);
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .service-features {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .service-features li {
+            margin-bottom: 8px;
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .service-features i {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+        }
+
+        /* --- Features Section --- */
+        .features-section {
+            background: var(--secondary-bg);
+            padding: 80px 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .feature-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--dark-bg);
+        }
+
+        .feature-item p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* --- CTA Section --- */
+        .cta-section {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .cta-section h3 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* --- Stats Section --- */
+        .stats-section {
+            padding: 80px 0;
+            background: var(--dark-bg);
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item h4 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .stat-item p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--dark-bg);
+            color: var(--light-text);
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 15px;
+            }
+            
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="home.html">HomeFinder</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="listing.html">Properties</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="log.html">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>Property Management Services</h1>
+            <p>Comprehensive property management solutions for landlords</p>
+        </div>
+    </section>
+
+    <section class="services-section">
+        <div class="container">
+            <h2>Our Management Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Property Marketing</h3>
+                    <p>Professional marketing services to attract quality tenants quickly and maximize your rental income.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Professional photography</li>
+                        <li><i class="fas fa-check"></i> Virtual tours</li>
+                        <li><i class="fas fa-check"></i> Multi-platform listing</li>
+                        <li><i class="fas fa-check"></i> Social media promotion</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Tenant Screening</h3>
+                    <p>Comprehensive background checks and screening to ensure you get reliable, qualified tenants.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Credit history checks</li>
+                        <li><i class="fas fa-check"></i> Criminal background screening</li>
+                        <li><i class="fas fa-check"></i> Employment verification</li>
+                        <li><i class="fas fa-check"></i> Rental history verification</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Maintenance & Repairs</h3>
+                    <p>24/7 maintenance services to keep your property in excellent condition and tenants satisfied.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Emergency repairs</li>
+                        <li><i class="fas fa-check"></i> Preventive maintenance</li>
+                        <li><i class="fas fa-check"></i> Vendor management</li>
+                        <li><i class="fas fa-check"></i> Quality control</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h3>Rent Collection</h3>
+                    <p>Automated rent collection and financial management to ensure consistent cash flow.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Online payment processing</li>
+                        <li><i class="fas fa-check"></i> Late fee management</li>
+                        <li><i class="fas fa-check"></i> Financial reporting</li>
+                        <li><i class="fas fa-check"></i> Direct deposit setup</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h3>Lease Management</h3>
+                    <p>Professional lease preparation and management to protect your interests and ensure compliance.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Custom lease agreements</li>
+                        <li><i class="fas fa-check"></i> Legal compliance</li>
+                        <li><i class="fas fa-check"></i> Renewal management</li>
+                        <li><i class="fas fa-check"></i> Document storage</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Property Analytics</h3>
+                    <p>Comprehensive reporting and analytics to help you make informed investment decisions.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Performance tracking</li>
+                        <li><i class="fas fa-check"></i> Market analysis</li>
+                        <li><i class="fas fa-check"></i> ROI calculations</li>
+                        <li><i class="fas fa-check"></i> Expense tracking</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="container">
+            <h2>Why Choose Our Management Services?</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h4>24/7 Support</h4>
+                    <p>Round-the-clock support for both landlords and tenants, ensuring peace of mind.</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Fully Insured</h4>
+                    <p>Comprehensive insurance coverage to protect your investment and our services.</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h4>Mobile App</h4>
+                    <p>Access your property information and reports anywhere with our mobile application.</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h4>Transparent Pricing</h4>
+                    <p>Clear, competitive pricing with no hidden fees or surprise charges.</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h4>Expert Team</h4>
+                    <p>Experienced professionals with deep knowledge of local real estate markets.</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h4>Performance Guarantee</h4>
+                    <p>We guarantee to fill your property within 30 days or we'll reduce our fees.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h4>500+</h4>
+                    <p>Properties Managed</p>
+                </div>
+                <div class="stat-item">
+                    <h4>98%</h4>
+                    <p>Tenant Satisfaction</p>
+                </div>
+                <div class="stat-item">
+                    <h4>24hr</h4>
+                    <p>Response Time</p>
+                </div>
+                <div class="stat-item">
+                    <h4>15+</h4>
+                    <p>Years Experience</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h3>Ready to Maximize Your Rental Income?</h3>
+            <p>Join hundreds of satisfied landlords who trust us with their properties</p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="btn btn-primary">Get Free Consultation</a>
+                <a href="contact.html" class="btn btn-secondary">Request Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 HomeFinder. All Rights Reserved.</p>
+    </footer>
+</body>
+</html> 

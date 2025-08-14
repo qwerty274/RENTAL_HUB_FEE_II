@@ -387,33 +387,39 @@
                 <div class="col align-items-center flex-col sign-up">
                     <div class="form-wrapper align-items-center">
                         <div class="form sign-up">
-                            <div class="input-group">
-                                <i class='bx bxs-user'></i>
-                                <input type="text" placeholder="Username">
-                            </div>
-                            <div class="input-group">
-                                <i class='bx bx-mail-send'></i>
-                                <input type="email" placeholder="Email">
-                            </div>
-                            <div class="input-group">
-                                <i class='bx bxs-lock-alt'></i>
-                                <input type="password" placeholder="Password">
-                            </div>
-                            <div class="input-group">
-                                <i class='bx bxs-lock-alt'></i>
-                                <input type="password" placeholder="Confirm password">
-                            </div>
-                            <button>
-                                Sign up
-                            </button>
-                            <p>
-                                <span>
-                                    Already have an account?
-                                </span>
-                                <b onclick="toggle()" class="pointer">
-                                    Sign in here
-                                </b>
-                            </p>
+                            <form id="signupForm" novalidate>
+                                <div class="input-group">
+                                    <i class='bx bxs-user'></i>
+                                    <input type="text" id="signupUsername" placeholder="Username" required>
+                                    <span class="error-message"></span>
+                                </div>
+                                <div class="input-group">
+                                    <i class='bx bx-mail-send'></i>
+                                    <input type="email" id="signupEmail" placeholder="Email" required>
+                                    <span class="error-message"></span>
+                                </div>
+                                <div class="input-group">
+                                    <i class='bx bxs-lock-alt'></i>
+                                    <input type="password" id="signupPassword" placeholder="Password" required>
+                                    <span class="error-message"></span>
+                                </div>
+                                <div class="input-group">
+                                    <i class='bx bxs-lock-alt'></i>
+                                    <input type="password" id="signupConfirmPassword" placeholder="Confirm password" required>
+                                    <span class="error-message"></span>
+                                </div>
+                                <button type="submit">
+                                    Sign up
+                                </button>
+                                <p>
+                                    <span>
+                                        Already have an account?
+                                    </span>
+                                    <b onclick="toggle()" class="pointer">
+                                        Sign in here
+                                    </b>
+                                </p>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -422,30 +428,34 @@
                 <div class="col align-items-center flex-col sign-in">
                     <div class="form-wrapper align-items-center">
                         <div class="form sign-in">
-                            <div class="input-group">
-                                <i class='bx bxs-user'></i>
-                                <input type="text" placeholder="Username">
-                            </div>
-                            <div class="input-group">
-                                <i class='bx bxs-lock-alt'></i>
-                                <input type="password" placeholder="Password">
-                            </div>
-                            <button>
-                                Sign in
-                            </button>
-                            <p>
-                                <b>
-                                    Forgot password?
-                                </b>
-                            </p>
-                            <p>
-                                <span>
-                                    Don't have an account?
-                                </span>
-                                <b onclick="toggle()" class="pointer">
-                                    Sign up here
-                                </b>
-                            </p>
+                            <form id="loginForm" novalidate>
+                                <div class="input-group">
+                                    <i class='bx bxs-user'></i>
+                                    <input type="text" id="loginUsername" placeholder="Username" required>
+                                    <span class="error-message"></span>
+                                </div>
+                                <div class="input-group">
+                                    <i class='bx bxs-lock-alt'></i>
+                                    <input type="password" id="loginPassword" placeholder="Password" required>
+                                    <span class="error-message"></span>
+                                </div>
+                                <button type="submit">
+                                    Sign in
+                                </button>
+                                <p>
+                                    <b>
+                                        Forgot password?
+                                    </b>
+                                </p>
+                                <p>
+                                    <span>
+                                        Don't have an account?
+                                    </span>
+                                    <b onclick="toggle()" class="pointer">
+                                        Sign up here
+                                    </b>
+                                </p>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -493,6 +503,86 @@
         setTimeout(() => {
             container.classList.add('sign-in')
         }, 200)
+
+        // Enhanced Validation for Signup Form
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            let valid = true;
+            // Username
+            const username = document.getElementById('signupUsername');
+            const usernameError = username.nextElementSibling;
+            if (username.value.trim() === '') {
+                usernameError.textContent = 'Username is required.';
+                valid = false;
+            } else {
+                usernameError.textContent = '';
+            }
+            // Email
+            const email = document.getElementById('signupEmail');
+            const emailError = email.nextElementSibling;
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email.value.trim() === '') {
+                emailError.textContent = 'Email is required.';
+                valid = false;
+            } else if (!emailPattern.test(email.value.trim())) {
+                emailError.textContent = 'Enter a valid email address.';
+                valid = false;
+            } else {
+                emailError.textContent = '';
+            }
+            // Password (min 8 chars, 1 uppercase, 1 lowercase, 1 digit, 1 special char)
+            const password = document.getElementById('signupPassword');
+            const passwordError = password.nextElementSibling;
+            const passwordValue = password.value;
+            const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/;
+            if (!passwordPattern.test(passwordValue)) {
+                passwordError.textContent = 'Password must be 8+ chars, include uppercase, lowercase, digit, and special character.';
+                valid = false;
+            } else {
+                passwordError.textContent = '';
+            }
+            // Confirm Password
+            const confirmPassword = document.getElementById('signupConfirmPassword');
+            const confirmPasswordError = confirmPassword.nextElementSibling;
+            if (confirmPassword.value !== password.value) {
+                confirmPasswordError.textContent = 'Passwords do not match.';
+                valid = false;
+            } else {
+                confirmPasswordError.textContent = '';
+            }
+            if (!valid) {
+                e.preventDefault();
+            }
+        });
+
+        // Validation for Login Form + redirect
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            let valid = true;
+            // Username
+            const username = document.getElementById('loginUsername');
+            const usernameError = username.nextElementSibling;
+            if (username.value.trim() === '') {
+                usernameError.textContent = 'Username is required.';
+                valid = false;
+            } else {
+                usernameError.textContent = '';
+            }
+            // Password
+            const password = document.getElementById('loginPassword');
+            const passwordError = password.nextElementSibling;
+            if (password.value === '') {
+                passwordError.textContent = 'Password is required.';
+                valid = false;
+            } else {
+                passwordError.textContent = '';
+            }
+            if (!valid) {
+                e.preventDefault();
+            } else {
+                // Simulate successful login and redirect
+                e.preventDefault();
+                window.location.href = 'home.html';
+            }
+        });
     </script>
 
 </body>
