@@ -62,6 +62,64 @@
         height: 40px; /* Adjust the height of your logo as needed */
         width: auto;
         }
+        .modal {
+        display: none; /* hidden by default */
+        position: fixed;
+        z-index: 2000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        justify-content: center;
+        align-items: center;
+        }
+
+        /* Modal box */
+        .modal-content {
+        background: #fff;
+        padding: 25px;
+        border-radius: 8px;
+        text-align: center;
+        max-width: 320px;
+        width: 90%;
+        animation: popup 0.3s ease;
+        }
+
+        @keyframes popup {
+        from { transform: scale(0.8); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+        }
+
+        /* Actions */
+        .modal-actions {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        }
+
+        .modal-actions button {
+        padding: 10px 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        }
+
+        #loginBtn {
+        background: var(--primary-gradient);
+        color: white;
+        }
+
+        #closeModal {
+        background: #ccc;
+        color: black;
+        }
+
+        #loginBtn:hover { opacity: 0.9; }
+        #closeModal:hover { background: #bbb; }
     </style>
 </head>
 <body>
@@ -140,6 +198,17 @@
                         </div>
                     </div>
                 </div>
+                <!-- Login Warning Modal -->
+                <div id="loginModal" class="modal">
+                    <div class="modal-content">
+                    <h2>Login Required</h2>
+                    <p>You must log in or sign up to view this property.</p>
+                        <div class="modal-actions">
+                            <button id="loginBtn">Log In</button>
+                            <button id="closeModal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
                 <div class="pagination">
                     <a href="listing.html">&laquo;</a>
                     <a href="listing.html">1</a>
@@ -151,5 +220,52 @@
         </section>
     </main>
     <footer><p>&copy; 2025 HomeFinder. All Rights Reserved.</p></footer>
+    <script>
+        let isLoggedIn = false; // Replace with real login check later
+
+        const propertyCards = document.querySelectorAll('.property-card');
+        const loginModal = document.getElementById('loginModal');
+        const loginBtn = document.getElementById('loginBtn');
+        const closeModal = document.getElementById('closeModal');
+
+        // Show modal
+        function showModal() {
+        loginModal.style.display = 'flex';
+        }
+
+        // Hide modal
+        function hideModal() {
+        loginModal.style.display = 'none';
+        }
+
+        // Card click handler
+        propertyCards.forEach(card => {
+        card.addEventListener('click', e => {
+            if (!isLoggedIn) {
+            e.preventDefault();
+            showModal();
+            } else {
+            // If logged in, go to detail page
+            let url = card.getAttribute("data-url") || "property-details.html";
+            window.location.href = url;
+            }
+        });
+        });
+
+        // Login button click
+        loginBtn.addEventListener('click', () => {
+        window.location.href = "log.html"; // replace with your login page
+        });
+
+        // Close modal when Cancel is clicked
+        closeModal.addEventListener('click', hideModal);
+
+        // Close modal when clicking outside the box
+        window.addEventListener('click', e => {
+        if (e.target === loginModal) {
+            hideModal();
+        }
+        });
+    </script>
 </body>
 </html>
