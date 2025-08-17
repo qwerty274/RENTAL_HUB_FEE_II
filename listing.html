@@ -47,23 +47,23 @@
         }
         /* Address hover overlay */
         .property-card::after {
-            content: attr(data-address);
+            content: attr(data-address) "\A" attr(data-phone);
             position: absolute;
             top: 12px;
             left: 12px;
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(0, 0, 0, 0.85);
             color: #fff;
-            padding: 6px 10px;
-            border-radius: 4px;
+            padding: 8px 12px;
+            border-radius: 6px;
             font-size: 0.85rem;
-            line-height: 1.2;
+            line-height: 1.4;
             opacity: 0;
             transform: translateY(6px);
             transition: opacity 0.25s ease, transform 0.25s ease;
             z-index: 2;
             pointer-events: none;
             max-width: calc(100% - 24px);
-            white-space: nowrap;
+            white-space: pre-line;
             overflow: hidden;
             text-overflow: ellipsis;
         }
@@ -88,6 +88,92 @@
         .card-specs i { margin-right: 5px; color: var(--dark-bg); }
         .card-footer h3 { font-size: 1.25rem; margin-bottom: 5px; color: var(--dark-text); }
         .card-footer .price { font-size: 1.2rem; font-weight: 600; color: var(--primary-color); }
+        
+        /* --- Search Section Styles --- */
+        .search-section {
+            padding: 40px 0;
+            background: #fff;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .search-box {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .search-box h2 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: var(--dark-bg);
+        }
+        
+        .search-form {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .city-select, .room-select {
+            padding: 12px 16px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            min-width: 180px;
+            background: #fff;
+            transition: border-color 0.3s ease;
+        }
+        
+        .city-select:focus, .room-select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .search-btn, .clear-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.3s ease, transform 0.2s ease;
+        }
+        
+        .search-btn {
+            background: var(--primary-gradient);
+            color: #fff;
+        }
+        
+        .clear-btn {
+            background: #6c757d;
+            color: #fff;
+        }
+        
+        .search-btn:hover, .clear-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        
+        .search-results {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .search-results h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--dark-bg);
+        }
+        
+        .search-results p {
+            color: #666;
+            font-size: 1rem;
+        }
+        
         .pagination { display: flex; justify-content: center; align-items: center; margin-top: 60px; gap: 10px; }
         .pagination a { display: block; padding: 10px 18px; border-radius: 5px; color: var(--dark-bg); background: #fff; border: 1px solid #ddd; font-weight: 500; transition: background 0.3s ease, color 0.3s ease; }
         .pagination a:hover, .pagination a.active { color: #fff; background: var(--primary-color); border-color: var(--primary-color); }
@@ -121,56 +207,89 @@
 
     <main>
         <section class="page-hero"><h1>Explore Our Properties</h1></section>
+        
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="container">
+                <div class="search-box">
+                    <h2>Search Properties by City & Room Number</h2>
+                    <div class="search-form">
+                        <select id="citySelect" class="city-select">
+                            <option value="">Select a city</option>
+                            <option value="mohali">Mohali</option>
+                            <option value="ludhiana">Ludhiana</option>
+                            <option value="amritsar">Amritsar</option>
+                            <option value="jalandhar">Jalandhar</option>
+                        </select>
+                        <select id="roomSelect" class="room-select">
+                            <option value="">Select room number</option>
+                            <option value="1">1 Room</option>
+                            <option value="2">2 Rooms</option>
+                            <option value="3">3 Rooms</option>
+                            <option value="4">4 Rooms</option>
+                            <option value="5">5+ Rooms</option>
+                        </select>
+                        <button id="searchBtn" class="search-btn">Search Properties</button>
+                        <button id="clearBtn" class="clear-btn">Clear Filters</button>
+                    </div>
+                </div>
+                <div id="searchResults" class="search-results">
+                    <h3 id="resultsTitle">All Properties</h3>
+                    <p id="resultsCount"></p>
+                </div>
+            </div>
+        </section>
+        
         <section class="filter-section"><!-- Filter form remains the same --></section>
         <section class="listings-section">
             <div class="container">
                 <div class="listings-grid">
                     <!-- Property Card 1 -->
-                    <div class="property-card" data-address="125 Maple St, Suburbia">
-                        <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=2070&auto=format&fit=crop" alt="Modern Suburban House">
+                    <div class="property-card" data-address="125 Model Town, Ludhiana, Punjab" data-phone="+91 98765-43210" data-city="ludhiana" data-rooms="4">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2070&auto=format&fit=crop" alt="Modern Punjabi Villa">
                         <div class="card-content">
                             <div class="card-specs"><span><i class="fas fa-bed"></i> 4 Beds</span><span><i class="fas fa-bath"></i> 3 Baths</span><span><i class="fas fa-ruler-combined"></i> 2,200 sqft</span></div>
-                            <div class="card-footer"><h3>Modern Suburban House</h3><p class="price">$2,800/month</p></div>
+                            <div class="card-footer"><h3>Modern Punjabi Villa</h3><p class="price">₹45,000/month</p></div>
                         </div>
                     </div>
                     <!-- Property Card 2 -->
-                    <div class="property-card" data-address="18 Market St Apt 12B, Downtown">
-                        <img src="https://www.shutterstock.com/shutterstock/photos/2107932644/display_1500/stock-photo-stylish-penthouse-living-room-with-skyline-views-of-city-and-lakefront-2107932644.jpg" alt="Downtown City Apartment">
+                    <div class="property-card" data-address="18 Mall Road, Amritsar, Punjab" data-phone="+91 98765-43211" data-city="amritsar" data-rooms="2">
+                        <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=2070&auto=format&fit=crop" alt="Amritsar City Apartment">
                         <div class="card-content">
                             <div class="card-specs"><span><i class="fas fa-bed"></i> 2 Beds</span><span><i class="fas fa-bath"></i> 2 Baths</span><span><i class="fas fa-ruler-combined"></i> 1,100 sqft</span></div>
-                            <div class="card-footer"><h3>Downtown City Apartment</h3><p class="price">$2,450/month</p></div>
+                            <div class="card-footer"><h3>Amritsar City Apartment</h3><p class="price">₹35,000/month</p></div>
                         </div>
                     </div>
                     <!-- Property Card 3 -->
-                    <div class="property-card" data-address="42 Oak Ave, Pleasantville">
-                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" alt="Cozy Family Home">
+                    <div class="property-card" data-address="42 Civil Lines, Jalandhar, Punjab" data-phone="+91 98765-43212" data-city="jalandhar" data-rooms="3">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" alt="Jalandhar Family Home">
                         <div class="card-content">
                             <div class="card-specs"><span><i class="fas fa-bed"></i> 3 Beds</span><span><i class="fas fa-bath"></i> 2 Baths</span><span><i class="fas fa-ruler-combined"></i> 1,800 sqft</span></div>
-                            <div class="card-footer"><h3>Cozy Family Home</h3><p class="price">$2,100/month</p></div>
+                            <div class="card-footer"><h3>Jalandhar Family Home</h3><p class="price">₹28,000/month</p></div>
                         </div>
                     </div>
                     <!-- Property Card 4 -->
-                    <div class="property-card" data-address="9 Ocean View Dr, Seaside">
-                        <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1974&auto=format&fit=crop" alt="Luxury Villa with Pool">
+                    <div class="property-card" data-address="9 Green Avenue, Mohali, Punjab" data-phone="+91 98765-43213" data-city="mohali" data-rooms="5">
+                        <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1974&auto=format&fit=crop" alt="Mohali Luxury Villa">
                         <div class="card-content">
                             <div class="card-specs"><span><i class="fas fa-bed"></i> 5 Beds</span><span><i class="fas fa-bath"></i> 5 Baths</span><span><i class="fas fa-ruler-combined"></i> 4,500 sqft</span></div>
-                            <div class="card-footer"><h3>Luxury Villa with Pool</h3><p class="price">$5,500/month</p></div>
+                            <div class="card-footer"><h3>Mohali Luxury Villa</h3><p class="price">₹85,000/month</p></div>
                         </div>
                     </div>
                     <!-- Property Card 5 -->
-                    <div class="property-card" data-address="55 Loft St, Arts District">
-                        <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=2070&auto=format&fit=crop" alt="Studio Loft">
+                    <div class="property-card" data-address="55 Sector 70, Mohali, Punjab" data-phone="+91 98765-43214" data-city="mohali" data-rooms="1">
+                        <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1980&auto=format&fit=crop" alt="Mohali Studio Apartment">
                         <div class="card-content">
                             <div class="card-specs"><span><i class="fas fa-bed"></i> 1 Bed</span><span><i class="fas fa-bath"></i> 1 Bath</span><span><i class="fas fa-ruler-combined"></i> 750 sqft</span></div>
-                            <div class="card-footer"><h3>Studio Loft</h3><p class="price">$1,600/month</p></div>
+                            <div class="card-footer"><h3>Mohali Studio Apartment</h3><p class="price">₹18,000/month</p></div>
                         </div>
                     </div>
                     <!-- Property Card 6 -->
-                    <div class="property-card" data-address="210 Elm St, Riverview">
-                        <img src="townhouse.jpg" alt="Townhouse with Garage">
+                    <div class="property-card" data-address="210 Phase 8, Mohali, Punjab" data-phone="+91 98765-43215" data-city="mohali" data-rooms="3">
+                        <img src="townhouse.jpg" alt="Mohali Townhouse">
                         <div class="card-content">
                             <div class="card-specs"><span><i class="fas fa-bed"></i> 3 Beds</span><span><i class="fas fa-bath"></i> 2.5 Baths</span><span><i class="fas fa-ruler-combined"></i> 1,950 sqft</span></div>
-                            <div class="card-footer"><h3>Townhouse with Garage</h3><p class="price">$2,300/month</p></div>
+                            <div class="card-footer"><h3>Mohali Townhouse</h3><p class="price">₹42,000/month</p></div>
                         </div>
                     </div>
                 </div>
@@ -184,5 +303,108 @@
         </section>
     </main>
     <footer><p>&copy; 2025 HomeFinder. All Rights Reserved.</p></footer>
+    
+    <!-- JavaScript for Search and Filtering -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const citySelect = document.getElementById('citySelect');
+            const roomSelect = document.getElementById('roomSelect');
+            const searchBtn = document.getElementById('searchBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const resultsTitle = document.getElementById('resultsTitle');
+            const resultsCount = document.getElementById('resultsCount');
+            const propertyCards = document.querySelectorAll('.property-card');
+            
+            // Check URL parameters on page load
+            const urlParams = new URLSearchParams(window.location.search);
+            const cityParam = urlParams.get('city');
+            const roomParam = urlParams.get('room');
+            
+            // Set dropdown values if parameters exist
+            if (cityParam) {
+                citySelect.value = cityParam;
+            }
+            if (roomParam) {
+                roomSelect.value = roomParam;
+            }
+            
+            // Apply initial filter if parameters exist
+            if (cityParam || roomParam) {
+                filterProperties();
+            }
+            
+            // Search button click event
+            searchBtn.addEventListener('click', function() {
+                filterProperties();
+            });
+            
+            // Clear button click event
+            clearBtn.addEventListener('click', function() {
+                citySelect.value = '';
+                roomSelect.value = '';
+                showAllProperties();
+                updateResultsDisplay('All Properties', propertyCards.length);
+            });
+            
+            // Filter properties based on selected criteria
+            function filterProperties() {
+                const selectedCity = citySelect.value;
+                const selectedRoom = roomSelect.value;
+                
+                let visibleCount = 0;
+                let titleText = '';
+                
+                propertyCards.forEach(card => {
+                    const cardCity = card.getAttribute('data-city');
+                    const cardRooms = parseInt(card.getAttribute('data-rooms'));
+                    
+                    let shouldShow = true;
+                    
+                    // Filter by city
+                    if (selectedCity && cardCity !== selectedCity) {
+                        shouldShow = false;
+                    }
+                    
+                    // Filter by room number
+                    if (selectedRoom && cardRooms < parseInt(selectedRoom)) {
+                        shouldShow = false;
+                    }
+                    
+                    if (shouldShow) {
+                        card.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // Update results display
+                if (selectedCity && selectedRoom) {
+                    titleText = `Properties in ${selectedCity.charAt(0).toUpperCase() + selectedCity.slice(1)} with ${selectedRoom}+ Rooms`;
+                } else if (selectedCity) {
+                    titleText = `Properties in ${selectedCity.charAt(0).toUpperCase() + selectedCity.slice(1)}`;
+                } else if (selectedRoom) {
+                    titleText = `Properties with ${selectedRoom}+ Rooms`;
+                } else {
+                    titleText = 'All Properties';
+                }
+                
+                updateResultsDisplay(titleText, visibleCount);
+            }
+            
+            // Show all properties
+            function showAllProperties() {
+                propertyCards.forEach(card => {
+                    card.style.display = 'block';
+                });
+            }
+            
+            // Update results display
+            function updateResultsDisplay(title, count) {
+                resultsTitle.textContent = title;
+                resultsCount.textContent = `${count} properties found`;
+            }
+        });
+    </script>
 </body>
 </html>

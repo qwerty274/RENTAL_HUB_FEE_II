@@ -208,6 +208,7 @@
         overflow: hidden;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
     }
 
     .property-card img {
@@ -215,6 +216,34 @@
         height: 220px;
         object-fit: cover;
         display: block;
+    }
+    
+    /* Address and phone hover overlay */
+    .property-card::after {
+        content: attr(data-address) "\A" attr(data-phone);
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        background: rgba(0, 0, 0, 0.85);
+        color: #fff;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 0.85rem;
+        line-height: 1.4;
+        opacity: 0;
+        transform: translateY(6px);
+        transition: opacity 0.25s ease, transform 0.25s ease;
+        z-index: 2;
+        pointer-events: none;
+        max-width: calc(100% - 24px);
+        white-space: pre-line;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .property-card:hover::after {
+        opacity: 1;
+        transform: translateY(0);
     }
 
     .card-content {
@@ -312,8 +341,8 @@
         <!-- Hero Section -->
         <section class="hero">
             <div class="hero-content">
-                <h1>Find Your Perfect <span class="highlight-text">Rental Home</span></h1>
-                <p>Search thousands of listings to find the key to your new home.</p>
+                <h1>Find Your Perfect <span class="highlight-text">Rental Home</span> in Punjab</h1>
+                <p>Discover beautiful properties across Ludhiana, Amritsar, Jalandhar, and Mohali.</p>
                 <a href="listing.html" class="cta-button">Search Properties</a>
             </div>
         </section>
@@ -323,17 +352,17 @@
             <div class="info-item">
                 <i class="fas fa-phone"></i>
                 <h3>PHONE NO</h3>
-                <p>123-456-7890</p>
+                <p>+91 98765-43210</p>
             </div>
             <div class="info-item highlight">
                 <i class="fas fa-envelope"></i>
                 <h3>EMAIL ADDRESS</h3>
-                <p>contact@homefinder.com</p>
+                <p>contact@homefinder.in</p>
             </div>
             <div class="info-item">
                 <i class="fas fa-map-marker-alt"></i>
                 <h3>LOCATION</h3>
-                <p>123, Main Street, USA</p>
+                <p>Phase 8, Mohali, Punjab, India</p>
             </div>
         </section>
         
@@ -341,96 +370,96 @@
         <!-- Featured Listings Section -->
         <section class="featured-listings">
             <div class="container">
-                <h2>Featured Properties</h2>
+                <h2>Featured Properties in Punjab</h2>
                 <div class="slider-container">
                     <!-- The list of properties is duplicated below to create the seamless loop -->
                     <div class="listings-slider">
                         <!-- Original Set of Properties -->
-                        <div class="property-card">
+                        <div class="property-card" data-address="125 Model Town, Ludhiana, Punjab" data-phone="+91 98765-43210">
                             <a href = "L1.html">
-                            <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=2070&auto=format&fit=crop" alt="Modern Suburban House">
+                            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2070&auto=format&fit=crop" alt="Modern Punjabi Villa">
                             <div class="card-content">
                                 <div class="card-specs"><span><i class="fas fa-bed"></i> 4 Beds</span><span><i class="fas fa-bath"></i> 3 Baths</span><span><i class="fas fa-ruler-combined"></i> 2,200 sqft</span></div>
-                                <div class="card-footer"><h3>Modern Suburban House</a></h3><p class="price">$2,800/month</p></div>
+                                <div class="card-footer"><h3>Modern Punjabi Villa</a></h3><p class="price">₹45,000/month</p></div>
                             </div>
                         </div>
-                        <div class="property-card">
-                            <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1974&auto=format&fit=crop" alt="Luxury Villa">
+                        <div class="property-card" data-address="9 Green Avenue, Mohali, Punjab" data-phone="+91 98765-43213">
+                            <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1974&auto=format&fit=crop" alt="Mohali Luxury Villa">
                             <div class="card-content">
                                  <div class="card-specs"><span><i class="fas fa-bed"></i> 5 Beds</span><span><i class="fas fa-bath"></i> 5 Baths</span><span><i class="fas fa-ruler-combined"></i> 4,500 sqft</span></div>
-                                <div class="card-footer"><h3>Luxury Villa with Pool</h3><p class="price">$5,500/month</p></div>
+                                <div class="card-footer"><h3>Mohali Luxury Villa</h3><p class="price">₹85,000/month</p></div>
                             </div>
                         </div>
-                        <div class="property-card">
-                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" alt="Cozy Family Home">
+                        <div class="property-card" data-address="18 Mall Road, Amritsar, Punjab" data-phone="+91 98765-43211">
+                            <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=2070&auto=format&fit=crop" alt="Amritsar Family Home">
                             <div class="card-content">
                                  <div class="card-specs"><span><i class="fas fa-bed"></i> 3 Beds</span><span><i class="fas fa-bath"></i> 2 Baths</span><span><i class="fas fa-ruler-combined"></i> 1,800 sqft</span></div>
-                                <div class="card-footer"><h3>Cozy Family Home</h3><p class="price">$2,100/month</p></div>
+                                <div class="card-footer"><h3>Amritsar Family Home</h3><p class="price">₹35,000/month</p></div>
                             </div>
                         </div>
-                        <div class="property-card">
-                            <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=2070&auto=format&fit=crop" alt="Charming Cottage">
+                        <div class="property-card" data-address="42 Civil Lines, Jalandhar, Punjab" data-phone="+91 98765-43212">
+                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" alt="Jalandhar Cottage">
                             <div class="card-content">
                                 <div class="card-specs"><span><i class="fas fa-bed"></i> 2 Beds</span><span><i class="fas fa-bath"></i> 1 Bath</span><span><i class="fas fa-ruler-combined"></i> 1,200 sqft</span></div>
-                                <div class="card-footer"><h3>Charming Cottage</h3><p class="price">$1,900/month</p></div>
+                                <div class="card-footer"><h3>Jalandhar Cottage</h3><p class="price">₹22,000/month</p></div>
                             </div>
                         </div>
-                        <div class="property-card">
-                            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhUSExIVFRUVGBgXGBcYFRUXFhgYFRUWFx0XFhgYHSggGBolHhcWITEhJSkrLi4uFx8zODMsNygtLisBCgoKDg0OGhAQGi0lHx8tLS0tLS0tLS0tLS0tLi0tLS0rLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAJ8BPgMBIgACEQEDEQH/xAAbAAACAwEBAQAAAAAAAAAAAAAEBQIDBgcBAP/EAFAQAAIABAMEBgQJCAYKAgMAAAECAAMRIQQSMQUGQVETImFxgZEyobHBBxQjQlJystHwFSRDYnN0kuElgrPC0vE0NURTY4OTorTDFjMXVGT/xAAZAQADAQEBAAAAAAAAAAAAAAAAAQIDBAX/xAAnEQACAgIDAAEDBAMAAAAAAAAAAQIRITEDEkEiBFFhEzJxkRSB8P/aAAwDAQACEQMRAD8Apw+x5p1AHefurDKVsMjV/Ie8mG0uX7fugwy7CN1xxozc3YrlbIQU9I+P3RlsRjXSZNANlnFACNFta146EJft++OabfFDP/ej7BByRSWEEJNs1uzsOXlq4I61bdxI18ILEgjUGIbp3wkonk322hyFjp/xISimsYOR/VTjNp5VgEtYIRYJ6AHhEhheR8455/TTjrJvD6qD3grRIuWXAUnHoSVrQglb2upoaQwR457OokEixUj1DFohgQCRMS4mBEwIYmVCXHvRxcBHtIBFHRxEy4JpESIB2CmXECkFkRWRAMFKR4UggiIlYAKCkRKxdSPCIkAcrESsEMsQIhADssVssEssRUkGo9gPtgsARkipkguYKknnrYCKmWGAIyRUyQYyxUywABskUskGssVMsKwAnlxS8uDnWKHEIdAMxIHaXB7LFc1YBCyasLp4vDOeIBmiADeyJ6kihHpeqovDFtPEQuGyuR/V/nFg2Y60o1uwmOns/sY9V9xmB7RHMN4f9o/ej7o3pE9aGhPO1e7SOZbYx+abOl0v8YYmxsQ2X3DzhTmmhwi0zou6A/M5Pc39o8OgsYzdzevDypKSZmdWStTQFTVi1qGvHlGmwu3sM/oz0v8ASOQ+T0Md3Hyx6pWedy8UuzdejFYsUx5LIIqLjmLiJqIpsyoweLxOSYDznzQf4mjoLKDwEc02meuP3ib9po6blvHJw+nb9S66tfkh0A4WinEzBLALGgJoLHWCwIVbzN1Jf7QewwuTjjVoXDzSckmw2ViAQCDUHjBCTYV7nzc+GBPBmHkYcnDKeFO6Mf03Vo6HzpSaaPlcRYKQm+PfLmRQ1BCg1F6qGvyg8sy6g+7ziMmtoKpHhEUJPifSQDo+MQaPmmRW02AZ6YiYgZsedJABIiI0j7PHheBgfGIkQMuMJcr0TgD5xMvKe6jlvVFpmxF2FHxit4+aZFLzoBpEmitogZsQMyHYUSMVGPGmRW0yEFHrRS0etMipngGReB5hix2iuWKmAZ4qQPiYOewhdOMIkX4iEmLxZrRagc71P3D8dzyauvcfYYSTEhgjsKJcd/vEEulvGIKtx9b3iCZi2jqvZz+orKe6OUbyr/pH72fdHXsvujku8o/0j96PuhT0OG/6NRu9u/h52ElNMkqWZTVhVWPXYXZCCbADwic/cHCn0TMl9isKeOYE+uGu5SVwUg9jf2jw9EqNYqLirRyzlNTdP0wP/wAEmIc0nFFezKVPi4JPqi2VgdqydHE4cldST4zgI3fRx6JcJwj5gP1Z+0/5RyIzC85FKzFPSTCwdVAzAMSAykg3rw8Y1mD34ks2V5Ty24ixA7ycsZ3FtSap/wCPO/8AZHUMRhlezqrDkwDDyMY8fZN0/sdHN1aVr7i6VtmQRXpABzNQP4vR9cL96MQjS5ZVlYdILqwI0PKDsRuthH1w6D6lZf2CIzG9O6kqUqPKmTULNlpmVloQToy19caSc6zRlxx4+yasfbjj82I/4j/3Y0YjA7u7OxbyjMw+KEsZ2GRlJWopfiL24Q1E3a0vWVIn88rBT4VK+yJhP4rA+TjubaaA8fNptFP3iUPOVSN2I5RitrP8dWZNkOhWajsgBJ6ijqqdGJF9Y2uD30wb2MxkOlHRloeRIBA84lSVsucJYotlNXGzUJOUSwQKmgOZBUeZhkcDUAhuFaGEWDxStj5pVgymUKEGoNGl6GNNKmCi93uiHRtG6M7tLE9EQHYAnTthc+115n+FvugjfGmeVX6R9hhYCsZN5NUsFeL3nlSzR2y2rUqwHiaUHjBmA2ss3/6znJ0C9Y+qMhvjJBViPon2GNB8GWxZM7ADpEqwmsAwJDABJdLjXxiuP5OieR9VZoFScf0b+Kke2Bdp4syFDzaopOUEit6E0oKngYYz8FiZCM0maZwUEiVMuxpwV9a8tBGM3k3jXGSeiMppcxCXIJBWmRksedWFqRco0iYTUtGokyJrAMFsVUg5hcNWh8YvGAm/q+f8oWbP30wvRpd7IiegbMo9kFjfrA/70/8ASm/4YSRdluJwbqjMSvVUtYn5oJ5dkYjH72hFZuibqit2ArV1X+9XwjXz98sHMV5aM7MysoAlTNWBArawvrGE+ELDKqMUFujT1zZQiZYaQ1of4HaAmrmU6EqRxDDUGC1PbHP9l45pU1mF/lJoZTo1Clj2jnw8wek7KlmdLWbLRyrCo6h8jTjBQWUEdseFIa/kub/un/hMB7TkmQnSTRkStMxFqnh6jBQrQL0cfdFDZNjTyLSj5r98S/IOIP6MfxJ98FB2QheXEhLCwbMwhlswegK68eFYVvPJLHQcPviWPZ5i3hVPxKBlRmAZ65VJFTQXoOMNdn4f4xNaSjrmUMXqT1cpQFTS+b5Rbd/cc1vhso4faOCBYNmE02rwQC9e6Gk9ktrQW5v5+wwpdYcUv5+wwtZYBo7Bluv1veIImi3l74r4r9b3rF87Q+HvjezGj7Lc+Ecj3lW2I/ej7o6+NT4RyTeVbYj97PuhSeBwWToW4ifmEjuf+1eH4SE24I/MJHc/9q8aELFKWEYSh8mUdHHoSL8sehIfYXQ4xtL01/eJvteOvsl45FtYddf3mZ9p47IwvEReWbciwgfJGd32X5OV+0HsManLGb35X5OV+0/umKcjOKyUfB6v5p/zX/uxpskZz4OBXCH9rM/uxqskTGWCpr5M5xtQf0lL/epP2Y3s/Co9nRX+sob2iMHtcf0lL/epP2Y6EEaBbY54SMbh9ny02hOCIFXovRWyiry9FFhGhl4UUWhI6vPshSo/pCd+yH2kgjb7zFkBpeYkC6L88EaE5SQOZBW1bjUTI1Twc3323jdplJfoSnK5mUiracdNLaVqNeKRNpszKz0oSarkJNBQ2PG50Fb1BrEt6NmICcjKZbAPLcTA4AY1UKRUNRVYdU6CtCdRtlzVpLzilQSCQTUAilKaCp5fz43J+ji2Md4MSSla6intjV/B3gMc2ErJxcuVLzmimQJjVKI1cxYcwKdkY3boAl9v8o6l8FK/mI+v/wCqVGvDsvm/aFrsfH/O2iPDCyh74wu8GzjIxE0MwmMVLlwpSpIUmqhiLluEdhKiOab6YcnET5vzVQIew0B9YB8o6G1TMIX2MdJfqgCVL6xB0el0J4tDDdvDCaWebhJrJahw2GEw5iAxDM9QKVFqceEC4GSaqpFwAf8AsZT5GnnHVPg/w4l4KWhFGuzUHFmJGbty5e6wgdGlujPoyKhRJG1UUgihw0lJYrxfKgovPsrGY3rxEtZUxp0rpk6MKUDshvPkgMrDRgbioItcER2XHr8lM+o/2THEN9R+bTfqr/5EmM5LKKi7TF0zBoWdpM0TKPOLoRkmoT0bMAtflFUCuda2IqBeOqfBpjpY2dJzTUU3sXUHXtMcdSSC8yoB+VneyRHWPgx2BhX2fKmPhZDuS9XaTLZjRyBVitTDJksGvfa+HGuIkjvmy/vjFfCttbDzMAyS8RJmPnU5UmozUAa+VTWNquw8KNMNIHdJl/4YyfwqbPlJgCUlS0PSLdUVTo/ECGyYpWPk3rwAUA47DaD9PL5fWiD757PGuOw//VX74bSMFLCrSWgsPmry7otElRoo8AIYsHNd594MMxaZKxUibUjLLRiZjVoLWpbXXhE9hTpBaRNd1aXMUsaK/VOU9U0FyGFDS1oK+EWfO6Fa9RCQXlEg+i6lSDS96G2lxBm6oPSYOtK/F005fFlp6qRneTW8Ga3Zx8pNp46YSchmTQtEdtVwhHVVSRYHhCj4QtoS5u0sCUzUUTgao6XKBrZwKihFx3RrNyf9c7R+vO9mEhN8MX+s9nfUneyKvFEVkXA38/YYAdYOT0h4+wwK4hVRaOucu/3rFz8fD3wDLmsafj8aCLUnMdeJ93841Mw4C58PfHJ95B1Z/wC9n3R0iZinABHE38P845vvGepP/ej7BEvRUdnRNwh+YSNdH/tXjQg98c+3U2hOXCylWoUBqGgpeY51pDUbUnVpnFf6vDwi4xxsyk86NeCYkojKytoYhtH04VlA+uPG2pPAu9O2qEd1AIOv5Qr/AAYXbI6yfvMz7Tx2Zlji+3GuOzETftPG+O0sRWnSCt7dXSlbWiYq3svk0jVZYzO/S/Jyf2n90wFid4JiGhmknjQKRft8oXbX2o05VzNXK68AKVVopwaV2ZxedDn4Mh+Zn9rM/uxrMscx3M2k6YcqswL8o5p1ey97w/XbEw2+MCvdL97Qowxsc38ngTbYH9Jy/wB7lfZjpFI5PtjEMMXKbNVvjEo5rUr0esaobVn69LbsCmmutISjbeSpPCwfEf0jO/ZD7SQ7lCy93ujM7NnlsXMZjUmSCTSn6RRpDvGzZqys0lVd8hyhiQtcvHKCSOwQngtaOP79YZWnOS6ZixLnKFaWFzKVYVa4ygAg+jloCdU8jAjMGBFQQaUyrUgk21YaWqdTU1FIcbzbEaWzPNRVdmAYjpCHm5Qxf5SpNVYAkE3FyWzUAwU9cktqN1hUEhqNUAE1OpFKVP0bE8OWSGQ20eoK61v30jrvwSj8w/r/APqlRxzbTkgAa/yjofwdbSmLgwqGlZnZ/u5X6pMa8cc0VyP4nUZkgMCOYpw0PfHPd7cMZGZJRyIqnNXLMZi1KVMxWJtzbieyHSbZmgdeYL2U6C1uA98IN7MVmlO5ZWJXgamwGsaSgvSIPJlJGIYutwKqD6KHVTwIjou5mzBOlJiXzZmJIPSH5kwgVRQEpY2pp23jGysLLTDo2UPMp6Q6SwKGhqBloKaamuoEMd29sTZeHloswqoz2FKVzseVRX74T44vKRXaVHS8atJUz6jfZMcM3yP5vN+qv/kSY6LidvMVK56VBBBahuLihNeItTjHNN7pvyE0c1X+3kwmERbIHXm/tZ3skR2X4Kh/Rsnvf7Zjish6tMIBPyk0mgJsVkmvqPlHQdxN6JErBSpbYlFZc9ULhSOsT9LUilLQ1+4JftOr0jG/Cz/oB/aL9l4rXe6T/wDtS/8AqfzjPb97wS52EKLORznFhMqbBr5a1p2w5LBMdrB1SSOqvcPZEqRipe9UqgHxiXw/TD/FE23qljSeh/5n84Cf9AfwmTVeSetlMtgMrSyGarC6MdVpc05CPdzAQ2CDLlPQm1SbFKqanmpBpwrThC7e/eDpcLMl5luUp8oGJpMXh64s2TjshwrFgtJMsVJA/wBnApfjaJ6/Iu/iWbkf652l+0m+zCQk+GP/AFns76k72QVuji6bR2i4cCs1hmqADVZH3eqEPwjY0zNp4IFw2QTRYg0qgNDTvr4xSQrLJeo8fYYGcQUmo/HAwM8TItHSJDejr7ODQVJlG3WGvM9ltPxWApLgZafj0otw04Uv9K1+wRoQSmSzRaUIqbg2vShjnO33tPH/APSfYI6M2LUKKVubX7tfOOX7SZ2eaCoGeeWF62rTs5QnoaGmyHAlIM/WuQCCAAHNq1Iv3cYOBY9YkENYGiHS+qnUWseHdAWE2lOWUJSJUCtwGzekeXfBMnG4sADLM/g9uYRalgzcM7JiawWzORWtRKIv33FvGDJTnLlLZtdZsg6881D4Qrn4XEEiY0tgwNjQJc86EXvximf8ZJCmY4roAz0v5Dne+kVbfgqS9BttPViOU+Z7Whq2KctkzDsBz5bnShoBGbxOGKFgWrR2XjUkG7XOpjT4bdwMAzTJwU8M0s1HO1LX9URC80XNJ1ZXNmjP1mW1rC1nHbfjflFGM2lLApnqc6kCjaAXOlvOGn/xCUeqlzf05r0oCASctuPLjCzamwJctakSzVkFArVFM1TVgDQ2HhFNtomMYpi3Zm1JcuXRmAOZjoK3p29nEQxG3FZQBLL/AFQ1SSLWANffHu6mDDyDVajpGAtLNwRcVvXhDRsA9FAzHLlr1UJsOQcU7oUbrY5dbeDI7V2izTF+SeXRkIBDZuqhA1AuddYZysXiT+jNMw9KaPo8lJ7TDRdgPOxSgzVHRlJgZlRjMMsUKmWHBXUmtwKdsPNr7STA4czZoMxVIBEpFB61s2VnAppxhKVOr/7+htXWBTu2Znxls2vQcaWHSrThrr6o2khZhUaC3ujHYbfbDsomCViAGoBWXLzX0qBMJA01HGKjv3L6USxJnrcBmYoAAVLA0Vib0ppzjNzjeyke75bqzZpzSaZi2eYM1AbEZqczxpTWM5J3SxIoHeUCaZ0E7KCerQCoqNKV1jfSMYhqwIq2p4mnM8aR9PCOBmVWANQGANDQioroaEivaYlxsar051tDcbFsCgm4ZdKq0xgajnRDTWGWw9z8TLTK2JINa5ZU7qUygcZRNdfCkanaGLotAASeYr5CBMJsiROko0yWGYrU1JuTqbHjSJ6taLXX1A67HmhSonk0rlDPVQaUvRK89IyG0X2itUbBs4pqhzihyVoVNfpcAbDnG3O7eE6MShJAQMXorTFOY6nMGzeFaQXKwqIiyxUqoyrmZnIAJNMzEsdefIaARVTC4+HMV2vjlFPyXNFBTqysSBSmmhHjDHYs7GzsqnBGSihhmmFhStSQEYBiSWOtr6xtZmy5bfTHdMmL7GjPbZw+ElTAsx8VXLWq4ibQAk69fsh1yPQXD0nOweKqtJQYClwFWgqo+nWtKnT5sA7W2TiirFMKs0laBZhlla50NSrOASACRW1oa7L2tg5SlRiXYNQ0ms7kEfRLgkVgDaO9kjpBLSawrYFWBOb6tDRdakxMlyJDTgzOzd18fR16BsrMWoJsqhsoqRn1pm9cN8PsbES8JKVpRzgzKoKMw+UJFcoIFQRS/OKtrbVxKBAmImN0lRVcpCG/Waq2FKeMBTNrTHkL+dYhXZtC0wfJZADU2vU1507LxCnPZXWJWmYOM0prG4KEaHTSNNvts0y8HnpLpmUAgrmGYNqAYV7OQAUXGuAOJV08iXgzD4Izi4OJeeihbF3KkvXgzEAjL6407vVbJcVu9E/yjKBLfF5gounRrSoFietUDSD2w/S5UYSkPR1dsoUAstgFKVJowNS2hrxESmbLl5GHRr6JGiWqNdIzc6Qis3VHoJa1iEUHQUJqDBKLZKaWkM8RTDq0tsNhZym6zejlCahDC2YAswN9b314QT8aWb0TiSgUU+T6hUBEZLZxQEkA6VGa3OOeSn+WY3uDw7Y02AxVJadoP2mhRTumVJrrY03PIOJxtUyjpScop1erLFLClqiM9vIV/K8vLwY101+Ly+XZl8of4Gd0bF0ABb0rUzaakXrYX9sIdtSGfHyp6ochqW45T0QS541yi/qEXRnaoeyjcfjgYpcxOUbj8cIqYwpBE30vD6a3pS45E8u0xakhbXKivPjQanlHNcZvbiFnTJJYUQ0FqWoCOPbTwiP5cc6kxD5S1A6f0MsLd/ZbT1WjBNgW6aa4lsQZ1QwQ0K9W4NLjXSFbY1jfO31amh+7+UaXYuOqgodLQnz/AIH+mBy9qmScrEgA+idCKm1D3nzhjhNtNObKjBAdQAll7CaEecOZU+ooTbt0gTGbIlTakDo3+klv4l0YeR7Y1jzRezCXDLxjjZsqZRulJtZbFWPHrHiNBbl2Rm523VScUn4cynBOU9GhDUtmVzqNLivnD/Zsro5eXpOkodaUpQAZaVNNK+MDbYwyz5TS2AuDlJ+a1LMOV/VURHJJ3gvjSrIEmMlufRlEMbUQXr9IGt+3jDOU4pov8IHsEL9kbqooBmziSL0Wwr36nwpGmTCYcfNHmfviE5PJo0hVisEkxQKshBrmRiDoRS9Rx9QgaZgOkdJE3Es+dqotUMxciM5zG5pQcuUPyuHGi+th74RzcHKlYk40TJnolWRmqigqFzIPmmwr3nx1jyPTZm4LZLDYPDYSWsnNNImTMqh5qDNMf5q5UFTb1RGRIlSphREcEoGJZi4sctK0F7RT+XMJMZXM2W/RNnHWU0ahANNeNfCKk2xKmMXUkj0RY868bxSb0DS2LMHgMQuO+MZPkh0oABXM2ZhSgJFBatTygreadiJiFBIZhY5MyGtDUfOpWo58Yvw+0kYAhmvp1G04ar3RZPnpQZnW1+tSluPCMpcd6G3eDDYvCMhoZbWFwRm9IU9JicwOh8u6eCkTM5YSgHAyMaNmWhWmeutK2JNetyJMaedhFZWAm+kamrk8dAc1QKWiG0MKksdLkFKEUqVrY3B58e+OaXDL0SQNJlYhRVQhsCvXqOFdAaAV1vwrDLBzcQR/9YaljlmA0I4XAgeRK+SWajTPR1BBIU3oQa0I011GsOsLMooIFzqwpc6k1rU1NTrF8NxdFAGIMwggynB4gFSdOxrQTs5mlSUQqcwUA6GnYKG9NK9kWYTF/JoQCqlVbhU5hm98WfHu/wDhP3R1JiZScYR8x/4TE8DOaa+RUapvdWAA5kkUj1scP8wR7Y8TGrXVfMQWFGlxUmQi0KLUDU1qfEUv48Yxu8mz8CZMyfN+apNWeZUBeGRWWuot2ikMWxQJsa00vUX90K9ubIw+KPyq5rAUBKg05haV8eQhW/BdTimIx2dmZVyKScq1JyrwBJJqaa9tY2+5W5sp5K4qc7M0wVRFICgBvnGlSajQUHC8PX3B2edJbD6sxx74b7LwaSJSSUrlTMFqammdjc+MVKVoIxpnP9o4gPMCBMoDFBQmtbgk01000iyTPVsLkNx0kuoOhoiJodb2gCauac9DlIdmBrT5x40PONfs7cqa8pOsJalg/WJqRr6IXuN6c4jqiuzLU2dhj/s8sdyU9giWDREmTVRQq0lGmg/Sc40cjdcDWd5S1HrrCnauypctiyGZMrlDaUotfRF/pG8U+uyV20TaeKUt5whxy1PDyHvjS4XY0ubLLyp4tqrqVIPI0Y38IS4vDZSQdewCnhQiC0wVoy2Owqi9vNfdBGysN0sohD8rLJ6lfSQ3qv61SfVzFScbL+t7PfCaXPaVMExKhgedu4gDSBKirsfYebYRaWgt5a4iX8Ykij/pJfGvFhzPHt11rClpkWjJhctusPxwMVM0VSZt/wAcoqabES2XAZbw7HWcvSovyygXFi4HzW5kcD2U4wuw27WJanVVPrONP6tYfrOpeGUrExzuOTVMTYTcpz6c8AclS/D5xPZyh/srdSVKNc81z+swA8lAi1MXFoxphdR2Hrs6WOB/ib74++JoNGYeP3iFzYwxH4yecFILJ4WQ0rpc0wzA8wuta9VSFGQAk0ApwteITcTwrraE+8as4RUnGUakkg0YigsLEeYgHC7HuGadiWbTN0lvKgXyEVJ2iUjXrOiYmxmviLUtiZw7SZftyGLJOy3NvjE5v6ygeaqLRJVGj6SBH2lJLGXmR24rZgOxuA7jA2D3WDWKNMrqJkyZNXyZso4cKXjR4HdsIAKKg5KB7BQQ1fiFSAZL2ooAHZQDypHk1XroD6/dGlkbKlD5ubv+4WgfbCogU5BQfNVfXQa90a52TSbM2myVZaZKgClBXh3EU8YCnbhYSYSZko/9SZm9TW8zDlt48KLNNyH9c5Pt0i6TtGS/oT1buYH2RNldRCm6Oz5Nay27jOmufIsYB2kUVTkQqgUBVbgoFBrWH+M2MzGqYmZL7FWSR4h0MKNr7qTp4ocUNKVMumvPI61hStoaSQJufs+XiVmzJivQOFUrMZbjrN6LCo6y8xcw5fdSUtkxOJl5tKTlN/1Q6sPAC0K9gbsYzCqZaYtBLJJ6sqr1PFTNd1H8MG7U3aaahXOjFgQzT5RxDXrdWLgoeVNLUoIhVFYQutsz7YlJeJXBjHYtakIjvLwjyyadUVEsNQ0oDS9ucPZuwsYPQxso9j4b3pMHsinY248mQyTmLPOT9JmYAmhFSlSK0OvjreHuJ2mksdZxXgMy+s8ItTYdUYvbEzauGUzDIws9F1MppisBzZXb2VjP/wD5BnqevgGtrR2/wGN7jdopNBDT11sqtap00uxhZN2eoFTNqafPygAC5Oth2xXYmjMj4SJWr4Sav8J9ZpF8r4RsEdUnL/VWn/a9YahBmGRQ455QbV4kc/ZygjZWyZc7EpnkqVDA3FjlvSlKEWFa69vB2FDHYMxsUgeVKnZDcM6tLUgitVLkZhfUVhrI2DNAuyC7H0mOrMRw5ERphMEeZxBYjmmC+DzEJNDtMkMhmBnFXumepUVSlaVjfvrcwS1zTgBFZUfRHjeE2MBxGJWhF6d9IVYnEp9BfEV9sP509EFSF7goqYzm1NvE1VFRRzyKSb/rCnqiJOvRpC/GbRbSv47ITTZ1TenjGj2G0qeehnSlJoSJijIf6+WnbQ6W56rN4thCXVpTZlFaq1KgcweI+7jChtMctUZ3GHkPIn7oS4k9h8zBuJnLcHUQrxLr832098dLZmg/Ye1TImB1JpowJsR5+RjR7YwqzE+MyLq12A4c2A4do4RgXc8j5w43d26ZDUObI3pDWh+kPfzHcIExNBEmbfz9kUmbDLa2zwPlpV0a5A4VFiv6pr4d0IGmRM3kqCNPK2ghbKGBI1FRUdkM5eJHOMguw8PS8pR4e3SJ/kuToubwZhp3ECMrRVG0XEjnHr49FFSwHeQIxw2aii65uN3JtyuafjWLpWDRBVcPKB7lZvra084VhRoH3hkfNfOeSAzD/wBgMVTdrziOpIKj6UwhfEKKnzpFOGmMw0CgdtPIAgHyMNsOqihNzqP5eEIoXYSeWJz1ZhxBWg7OrWghnJmEAB3VK0sD1vGukGyZC6gADsF4vElKXANOYFfE6Dv7YKCyOGyEa6UuxB8gpglcataKCaUqcpC+dNeyA2kSgT0cpCeJyjLXt/kIqnTUQdZwg+gj1qBWwFiR5UgwMcyNolfQa55aH2Vg5NtPxIPl7oxox5ckykMvhnK109VPGPp6Oy/KMzNfQimluADeqHH+RM2UrecfRDfVNfwO2C/yokxQSh87xhcMzKAXYHvABH8P47YbptqUFCliGAoRlY1tr1a0EapEWN8TipHzgfFQYS418EwqcPLbtKL7aQDjtqIa5cx5dRvaRSEyypjkkplFai4r6rf5xm1GzRSYfLaUH+TlCUK0GVqV8mtAErHz1rSbM14sT7axKfgHIpQgHWhPqpygA4KcvosafrpX1ikN14JN+jQbfxC/pGYdqr7QBHkreSdU5mNOFgDXtv8AikKHkTiLsBXkpF/EmIytkOTVixI7R7BasQMcNt9nNCTTkdT3c++tI9w7iYczKvfWp+4euKMPs9hz58z3aw0w+HNLr+O6J7DoullCACBQWBAHlT3RKZh0ylZa0006tNDYDU+qLRLrYC3fS3lYQz2JgQZlCtFVakVrW9ADbx/zg7NsVJCzZexJkwZspA7agcPBvKH2D2TMUqWmLRToBbu0EPGisxqQV9D2xEyO31RN5lNIEmzu2HkReFpXrDh6qxQ80D5w/HlAc6cYAnz+2E7AIxaoa5pjX1IoD6waQtEqQhJCVJ1LMzf9pOWvbSKp8+F+JnxErKQym7UoKKAo5KAB5CFmIx5PGF82dFLToihmc2mgDsALA2001HqpCyavYYK29XpmPMKfUB7oVtWOpPBkePTn6o9E0cz5xS5POKjWAB5h9tlZLSjmK1BWhFVvUjhY6xQdrLzbyhQyxWy9sJ5BNo0uGxgNqkX1PWHlf1w8kOuuYN3Ur7R7YyCQRLmQupVmubFqnADv7uYGvjHyY0N82gub5QuutWF4zkmc30jy1rbxgpMU2hynvUH1Cg8dYOo7NFJlKesXPhVF82184KlSGqcsy2lvvPLyjNpPNjkJ7phI8FalPOJHa2Xqmx0AK39RyxLv7DVGmlTZiGhKmvLM5PkRQdvqgiTPqGqpHIu7+eUG8IsLi8ur69agBoBcaCgrqLCGeAPSVAoyVvqvGnKpicjCELClZnVvYUqangQB2aXg/B4RalrEm/L7zx410gdpaKaKNOdwOVBy7oIkT1pxtXnTvpE0OxhJypYUJ8B7AImJ9bCnhTX1/fA0ub2kd9zF4mWrSo9o7oAJ9AhrVV8r+cDPgUvlSn9Y8dbXEEZgbHWPUYAan2n1wxA42enKnl90SGFHAiLGnUFTp90S6UUr4whlCYUBs2UX4jj2nnFgwpqTmJ5A0oPVWK3m2vWhtqb152j1Z9LcuEFILPVwxb0gD3qDbz90SXAj6KjlQUHspHqzzrQf5+ESOIvSvmPugoLKhL/4ZF+z+K59cEJLXgKRZ0gjxz6+H84KCyACrWlK8e/tg7YrdZrcK+uAGPAU7uXtEVYYmRMD3Kmoa9wGINQOwgGHHDE9GpZ4gZsUNMiozI2ozJzJkBzZsTmPAc54AITp0AT5sWTpsA4ibCaApnzYAnzYliZsLsTOiGikezpsBzJ0VzZkCTpsTQ7FG2XrNPcB7/fC9pjczE8bPJmN308re6BmeNkZ2etNY9vhFTN2CIljHhcwBZ8prbSPipiJaIVgEf/Z">
+                        <div class="property-card" data-address="55 Sector 70, Mohali, Punjab" data-phone="+91 98765-43214">
+                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" alt="Mohali Apartment">
                             <div class="card-content">
                                  <div class="card-specs"><span><i class="fas fa-bed"></i> 2 Beds</span><span><i class="fas fa-bath"></i> 2 Baths</span><span><i class="fas fa-ruler-combined"></i> 1,100 sqft</span></div>
-                                <div class="card-footer"><h3>Downtown Apartment</h3><p class="price">$2,450/month</p></div>
+                                <div class="card-footer"><h3>Mohali Apartment</h3><p class="price">₹28,000/month</p></div>
                             </div>
                         </div>
-                        <div class="property-card">
-                            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2070&auto=format&fit=crop" alt="Modern Townhouse">
+                        <div class="property-card" data-address="210 Phase 8, Mohali, Punjab" data-phone="+91 98765-43215">
+                            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2070&auto=format&fit=crop" alt="Mohali Townhouse">
                             <div class="card-content">
                                  <div class="card-specs"><span><i class="fas fa-bed"></i> 3 Beds</span><span><i class="fas fa-bath"></i> 2.5 Baths</span><span><i class="fas fa-ruler-combined"></i> 1,950 sqft</span></div>
-                                <div class="card-footer"><h3>Modern Townhouse</h3><p class="price">$2,300/month</p></div>
+                                <div class="card-footer"><h3>Mohali Townhouse</h3><p class="price">₹42,000/month</p></div>
                             </div>
                         </div>
 
                         <!-- Duplicated Set for Infinite Loop -->
-                        <div class="property-card">
-                            <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=2070&auto=format&fit=crop" alt="Modern Suburban House">
+                        <div class="property-card" data-address="125 Model Town, Ludhiana, Punjab" data-phone="+91 98765-43210">
+                            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2070&auto=format&fit=crop" alt="Modern Punjabi Villa">
                             <div class="card-content">
                                 <div class="card-specs"><span><i class="fas fa-bed"></i> 4 Beds</span><span><i class="fas fa-bath"></i> 3 Baths</span><span><i class="fas fa-ruler-combined"></i> 2,200 sqft</span></div>
-                                <div class="card-footer"><h3>Modern Suburban House</h3><p class="price">$2,800/month</p></div>
+                                <div class="card-footer"><h3>Modern Punjabi Villa</h3><p class="price">₹45,000/month</p></div>
                             </div>
                         </div>
-                        <div class="property-card">
-                            <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1974&auto=format&fit=crop" alt="Luxury Villa">
+                        <div class="property-card" data-address="9 Green Avenue, Mohali, Punjab" data-phone="+91 98765-43213">
+                            <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1974&auto=format&fit=crop" alt="Mohali Luxury Villa">
                             <div class="card-content">
                                  <div class="card-specs"><span><i class="fas fa-bed"></i> 5 Beds</span><span><i class="fas fa-bath"></i> 5 Baths</span><span><i class="fas fa-ruler-combined"></i> 4,500 sqft</span></div>
-                                <div class="card-footer"><h3>Luxury Villa with Pool</h3><p class="price">$5,500/month</p></div>
+                                <div class="card-footer"><h3>Mohali Luxury Villa</h3><p class="price">₹85,000/month</p></div>
                             </div>
                         </div>
-                        <div class="property-card">
-                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" alt="Cozy Family Home">
+                        <div class="property-card" data-address="18 Mall Road, Amritsar, Punjab" data-phone="+91 98765-43211">
+                            <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=2070&auto=format&fit=crop" alt="Amritsar Family Home">
                             <div class="card-content">
                                  <div class="card-specs"><span><i class="fas fa-bed"></i> 3 Beds</span><span><i class="fas fa-bath"></i> 2 Baths</span><span><i class="fas fa-ruler-combined"></i> 1,800 sqft</span></div>
-                                <div class="card-footer"><h3>Cozy Family Home</h3><p class="price">$2,100/month</p></div>
+                                <div class="card-footer"><h3>Amritsar Family Home</h3><p class="price">₹35,000/month</p></div>
                             </div>
                         </div>
-                        <div class="property-card">
-                            <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=2070&auto=format&fit=crop" alt="Charming Cottage">
+                        <div class="property-card" data-address="42 Civil Lines, Jalandhar, Punjab" data-phone="+91 98765-43212">
+                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" alt="Jalandhar Cottage">
                             <div class="card-content">
                                 <div class="card-specs"><span><i class="fas fa-bed"></i> 2 Beds</span><span><i class="fas fa-bath"></i> 1 Bath</span><span><i class="fas fa-ruler-combined"></i> 1,200 sqft</span></div>
-                                <div class="card-footer"><h3>Charming Cottage</h3><p class="price">$1,900/month</p></div>
+                                <div class="card-footer"><h3>Jalandhar Cottage</h3><p class="price">₹22,000/month</p></div>
                             </div>
                         </div>
-                        <div class="property-card">
-                            <img src="https://images.unsplash.com/photo-1605276374104-5de67d18394b?q=80&w=1974&auto=format&fit=crop" alt="Downtown Apartment">
+                        <div class="property-card" data-address="55 Sector 70, Mohali, Punjab" data-phone="+91 98765-43214">
+                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" alt="Mohali Apartment">
                             <div class="card-content">
                                  <div class="card-specs"><span><i class="fas fa-bed"></i> 2 Beds</span><span><i class="fas fa-bath"></i> 2 Baths</span><span><i class="fas fa-ruler-combined"></i> 1,100 sqft</span></div>
-                                <div class="card-footer"><h3>Downtown Apartment</h3><p class="price">$2,450/month</p></div>
+                                <div class="card-footer"><h3>Mohali Apartment</h3><p class="price">₹28,000/month</p></div>
                             </div>
                         </div>
-                        <div class="property-card">
-                            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2070&auto=format&fit=crop" alt="Modern Townhouse">
+                        <div class="property-card" data-address="210 Phase 8, Mohali, Punjab" data-phone="+91 98765-43215">
+                            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2070&auto=format&fit=crop" alt="Mohali Townhouse">
                             <div class="card-content">
                                  <div class="card-specs"><span><i class="fas fa-bed"></i> 3 Beds</span><span><i class="fas fa-bath"></i> 2.5 Baths</span><span><i class="fas fa-ruler-combined"></i> 1,950 sqft</span></div>
-                                <div class="card-footer"><h3>Modern Townhouse</h3><p class="price">$2,300/month</p></div>
+                                <div class="card-footer"><h3>Mohali Townhouse</h3><p class="price">₹42,000/month</p></div>
                             </div>
                         </div>
                     </div>
