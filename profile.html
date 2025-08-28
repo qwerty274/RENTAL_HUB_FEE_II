@@ -111,7 +111,13 @@
                 <div class="profile-details">
                     <h2 id="profileUsername"></h2>
                     <p class="subtitle">Web Developer &amp; Designer</p>
-                    <p class="info-row"><strong>Email:</strong> johndoe@example.com</p>
+                    <p class="info-row"><strong>Email:</strong> <span id="emailDisplay">johndoe@example.com</span> <button id="editEmailBtn" style="margin-left: 10px; padding: 4px 8px; font-size: 0.8rem; background: var(--primary-color); color: white; border: none; border-radius: 4px; cursor: pointer;">Edit</button></p>
+                    <div id="emailEditForm" style="display: none; margin-top: 10px;">
+                        <input type="email" id="emailInput" placeholder="Enter your email" style="padding: 8px; border: 1px solid #ddd; border-radius: 4px; width: 200px;">
+                        <button id="saveEmailBtn" style="margin-left: 10px; padding: 8px 12px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer;">Save</button>
+                        <button id="cancelEmailBtn" style="margin-left: 5px; padding: 8px 12px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer;">Cancel</button>
+                        <div id="emailError" style="color: #dc3545; font-size: 0.9rem; margin-top: 5px;"></div>
+                    </div>
                     <p class="info-row"><strong>Phone:</strong> +1 234 567 8901</p>
                     <p class="info-row"><strong>Address:</strong> 123 Main St, City, Country</p>
 
@@ -129,6 +135,30 @@
     </footer>
 
     <script>
+    // Check if user is logged in
+    const storedUsername = localStorage.getItem('username');
+    const role = localStorage.getItem('role') || 'user';
+    
+    if (!storedUsername) {
+        // If no username found, redirect to login page
+        window.location.href = 'log.html';
+    }
+    
+    // Check if user has valid email
+    const storedEmail = localStorage.getItem('email');
+    if (storedEmail) {
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.co\.in|yahoo\.com|outlook\.com|hotmail\.com|rediffmail\.com)$/i;
+        if (!emailPattern.test(storedEmail)) {
+            alert('Your account has an invalid email address. Please sign up again with a valid email from allowed domains: @gmail.com, @yahoo.co.in, @yahoo.com, @outlook.com, @hotmail.com, @rediffmail.com');
+            // Clear invalid data and redirect to login
+            localStorage.removeItem('username');
+            localStorage.removeItem('email');
+            localStorage.removeItem('role');
+            localStorage.removeItem('currentUser');
+            window.location.href = 'log.html';
+        }
+    }
+    
     // Show uploaded image as profile picture and display username from localStorage
     const profilePicInput = document.getElementById('profilePicInput');
     const profilePic = document.getElementById('profilePic');
@@ -144,22 +174,98 @@
             reader.readAsDataURL(file);
         }
     });
+    
     const profileUsername = document.getElementById('profileUsername');
-    const storedUsername = localStorage.getItem('username');
     const email = localStorage.getItem('email');
-    const role = localStorage.getItem('role') || 'user';
-    profileUsername.textContent = storedUsername ? storedUsername : 'User';
+    profileUsername.textContent = storedUsername || 'User';
+    
     // Inject role into Bio
     const bioText = document.getElementById('bioText');
     if (bioText) {
         const base = 'Passionate about building beautiful and functional web experiences. Loves coding, coffee, and travel.';
         bioText.textContent = `${base} (Role: ${role === 'landlord' ? 'Landlord' : 'User'})`;
     }
-    // Optional: if this page is for users, redirect landlords to their page
+    
+    // If this page is for users, redirect landlords to their page
     if (role === 'landlord') {
-        // Keep the brand consistent by redirecting to landlord profile page
         window.location.replace('landlord.html');
     }
+
+    // Email validation and editing functionality
+    const emailDisplay = document.getElementById('emailDisplay');
+    const editEmailBtn = document.getElementById('editEmailBtn');
+    const emailEditForm = document.getElementById('emailEditForm');
+    const emailInput = document.getElementById('emailInput');
+    const saveEmailBtn = document.getElementById('saveEmailBtn');
+    const cancelEmailBtn = document.getElementById('cancelEmailBtn');
+    const emailError = document.getElementById('emailError');
+
+    // Load current email from localStorage
+    const currentEmail = localStorage.getItem('email') || 'johndoe@example.com';
+    emailDisplay.textContent = currentEmail;
+
+    // Email validation function
+    function validateEmail(email) {
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.co\.in|yahoo\.com|outlook\.com|hotmail\.com|rediffmail\.com)$/i;
+        return emailRegex.test(email);
+    }
+
+    // Show edit form
+    editEmailBtn.addEventListener('click', () => {
+        emailEditForm.style.display = 'block';
+        emailInput.value = currentEmail;
+        emailError.textContent = '';
+    });
+
+    // Cancel editing
+    cancelEmailBtn.addEventListener('click', () => {
+        emailEditForm.style.display = 'none';
+        emailError.textContent = '';
+    });
+
+    // Save email with validation
+    saveEmailBtn.addEventListener('click', () => {
+        const newEmail = emailInput.value.trim();
+        
+        if (!newEmail) {
+            emailError.textContent = 'Email is required.';
+            return;
+        }
+
+        if (!validateEmail(newEmail)) {
+            emailError.textContent = 'Please enter a valid email address. Allowed domains: @gmail.com, @yahoo.co.in, @yahoo.com, @outlook.com, @hotmail.com, @rediffmail.com';
+            return;
+        }
+
+        // Save to localStorage and update display
+        localStorage.setItem('email', newEmail);
+        emailDisplay.textContent = newEmail;
+        emailEditForm.style.display = 'none';
+        emailError.textContent = '';
+        
+        // Show success message
+        const successMsg = document.createElement('div');
+        successMsg.textContent = 'Email updated successfully!';
+        successMsg.style.color = '#28a745';
+        successMsg.style.fontSize = '0.9rem';
+        successMsg.style.marginTop = '5px';
+        emailEditForm.parentNode.insertBefore(successMsg, emailEditForm.nextSibling);
+        
+        // Remove success message after 3 seconds
+        setTimeout(() => {
+            successMsg.remove();
+        }, 3000);
+    });
+
+    // Real-time validation on input
+    emailInput.addEventListener('input', () => {
+        const email = emailInput.value.trim();
+        if (email && !validateEmail(email)) {
+            emailInput.style.borderColor = '#dc3545';
+        } else {
+            emailInput.style.borderColor = '#ddd';
+        }
+    });
     </script>
 </body>
 </html>

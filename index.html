@@ -79,9 +79,80 @@
         transition: color 0.3s ease;
     }
 
-    nav a:hover, nav a.active {
-        color: var(--primary-color);
-    }
+            nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        /* Enhanced Profile Icon Styles */
+        #loginIcon {
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            padding: 8px;
+            border-radius: 50%;
+            background: transparent;
+        }
+
+        #loginLink {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        /* Profile Dropdown Menu */
+        .profile-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            min-width: 180px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .profile-dropdown.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .profile-dropdown a {
+            display: block;
+            padding: 12px 16px;
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background-color 0.2s ease;
+        }
+
+        .profile-dropdown a:last-child {
+            border-bottom: none;
+        }
+
+        .profile-dropdown a:hover {
+            background-color: #f8f9fa;
+            color: var(--primary-color);
+        }
+
+        .profile-dropdown .signout-btn {
+            color: #dc3545;
+            font-weight: 600;
+        }
+
+        .profile-dropdown .signout-btn:hover {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
 
     /* --- Hero Section --- */
     .hero {
@@ -298,6 +369,35 @@
         height: 40px; /* Adjust the height of your logo as needed */
         width: auto;
     }
+.property-card {
+  position: relative; /* Needed so fav-button is positioned relative to card */
+}
+
+.fav-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.4); /* semi-transparent dark background */
+  border-radius: 50%;
+  border: none;
+  padding: 6px;
+  font-size: 26px;
+  cursor: pointer;
+  color: #ffd700; /* bright gold */
+  text-shadow: 0 0 5px #b8860b; /* subtle glow */
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.fav-button:hover {
+  background: rgba(0, 0, 0, 0.7);
+  color: #ffea00;
+}
+
+.fav-button.favorited {
+  color: #ffcc00;
+  text-shadow: 0 0 8px #ffcc00;
+}
+
 
     /* --- Responsive Adjustments --- */
     @media (max-width: 768px) {
@@ -331,7 +431,15 @@
                     <li><a href="faq.html">FAQ</a></li>
                     <li><a href="listing.html">Listings</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="log.html">Log in</li>
+                    <li><a href="log.html" id="loginLink"><i class="fas fa-user" id="loginIcon"></i><span id="loginText">Log in</span>
+                        <div class="profile-dropdown" id="profileDropdown">
+                            <a href="fav.html"><i class="fas fa-heart"></i> Favorites</a>
+                            <a href="#" id="historyLink"><i class="fas fa-history"></i> History</a>
+                            <a href="#" id="signoutBtn" class="signout-btn"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+                        </div>
+                    </a></li>
+
+
                 </ul>
             </nav>
         </div>
@@ -365,7 +473,15 @@
                 <p>Phase 8, Mohali, Punjab, India</p>
             </div>
         </section>
-        
+        <section class="favourites-listings">
+  <div class="container">
+    <h2>Your Favourites</h2>
+    <div id="favourites-container" class="listings-slider">
+      <!-- Favourite cards will appear here -->
+    </div>
+  </div>
+</section>
+
 
         <!-- Featured Listings Section -->
         <section class="featured-listings">
@@ -380,42 +496,44 @@
                             <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2070&auto=format&fit=crop" alt="Modern Punjabi Villa">
                             <div class="card-content">
                                 <div class="card-specs"><span><i class="fas fa-bed"></i> 4 Beds</span><span><i class="fas fa-bath"></i> 3 Baths</span><span><i class="fas fa-ruler-combined"></i> 2,200 sqft</span></div>
-                                <div class="card-footer"><h3>Modern Punjabi Villa</a></h3><p class="price">₹45,000/month</p></div>
+                                <div class="card-footer"><h3>Modern Punjabi Villa</a></h3><p class="price">₹45,000/month</p>
+                                    <button class="fav-button">⭐</button>
+                                </div>
                             </div>
                         </div>
                         <div class="property-card" data-address="9 Green Avenue, Mohali, Punjab" data-phone="+91 98765-43213">
                             <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1974&auto=format&fit=crop" alt="Mohali Luxury Villa">
                             <div class="card-content">
                                  <div class="card-specs"><span><i class="fas fa-bed"></i> 5 Beds</span><span><i class="fas fa-bath"></i> 5 Baths</span><span><i class="fas fa-ruler-combined"></i> 4,500 sqft</span></div>
-                                <div class="card-footer"><h3>Mohali Luxury Villa</h3><p class="price">₹85,000/month</p></div>
+                                <div class="card-footer"><h3>Mohali Luxury Villa</h3><p class="price">₹85,000/month</p><button class="fav-button">⭐</button></div>
                             </div>
                         </div>
                         <div class="property-card" data-address="18 Mall Road, Amritsar, Punjab" data-phone="+91 98765-43211">
                             <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=2070&auto=format&fit=crop" alt="Amritsar Family Home">
                             <div class="card-content">
                                  <div class="card-specs"><span><i class="fas fa-bed"></i> 3 Beds</span><span><i class="fas fa-bath"></i> 2 Baths</span><span><i class="fas fa-ruler-combined"></i> 1,800 sqft</span></div>
-                                <div class="card-footer"><h3>Amritsar Family Home</h3><p class="price">₹35,000/month</p></div>
+                                <div class="card-footer"><h3>Amritsar Family Home</h3><p class="price">₹35,000/month</p><button class="fav-button">⭐</button></div>
                             </div>
                         </div>
                         <div class="property-card" data-address="42 Civil Lines, Jalandhar, Punjab" data-phone="+91 98765-43212">
                             <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" alt="Jalandhar Cottage">
                             <div class="card-content">
                                 <div class="card-specs"><span><i class="fas fa-bed"></i> 2 Beds</span><span><i class="fas fa-bath"></i> 1 Bath</span><span><i class="fas fa-ruler-combined"></i> 1,200 sqft</span></div>
-                                <div class="card-footer"><h3>Jalandhar Cottage</h3><p class="price">₹22,000/month</p></div>
+                                <div class="card-footer"><h3>Jalandhar Cottage</h3><p class="price">₹22,000/month</p><button class="fav-button">⭐</button></div>
                             </div>
                         </div>
                         <div class="property-card" data-address="55 Sector 70, Mohali, Punjab" data-phone="+91 98765-43214">
                             <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" alt="Mohali Apartment">
                             <div class="card-content">
                                  <div class="card-specs"><span><i class="fas fa-bed"></i> 2 Beds</span><span><i class="fas fa-bath"></i> 2 Baths</span><span><i class="fas fa-ruler-combined"></i> 1,100 sqft</span></div>
-                                <div class="card-footer"><h3>Mohali Apartment</h3><p class="price">₹28,000/month</p></div>
+                                <div class="card-footer"><h3>Mohali Apartment</h3><p class="price">₹28,000/month</p><button class="fav-button">⭐</button></div>
                             </div>
                         </div>
                         <div class="property-card" data-address="210 Phase 8, Mohali, Punjab" data-phone="+91 98765-43215">
                             <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2070&auto=format&fit=crop" alt="Mohali Townhouse">
                             <div class="card-content">
                                  <div class="card-specs"><span><i class="fas fa-bed"></i> 3 Beds</span><span><i class="fas fa-bath"></i> 2.5 Baths</span><span><i class="fas fa-ruler-combined"></i> 1,950 sqft</span></div>
-                                <div class="card-footer"><h3>Mohali Townhouse</h3><p class="price">₹42,000/month</p></div>
+                                <div class="card-footer"><h3>Mohali Townhouse</h3><p class="price">₹42,000/month</p><button class="fav-button">⭐</button></div>
                             </div>
                         </div>
 
@@ -424,42 +542,42 @@
                             <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2070&auto=format&fit=crop" alt="Modern Punjabi Villa">
                             <div class="card-content">
                                 <div class="card-specs"><span><i class="fas fa-bed"></i> 4 Beds</span><span><i class="fas fa-bath"></i> 3 Baths</span><span><i class="fas fa-ruler-combined"></i> 2,200 sqft</span></div>
-                                <div class="card-footer"><h3>Modern Punjabi Villa</h3><p class="price">₹45,000/month</p></div>
+                                <div class="card-footer"><h3>Modern Punjabi Villa</h3><p class="price">₹45,000/month</p><button class="fav-button">⭐</button></div>
                             </div>
                         </div>
                         <div class="property-card" data-address="9 Green Avenue, Mohali, Punjab" data-phone="+91 98765-43213">
                             <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1974&auto=format&fit=crop" alt="Mohali Luxury Villa">
                             <div class="card-content">
                                  <div class="card-specs"><span><i class="fas fa-bed"></i> 5 Beds</span><span><i class="fas fa-bath"></i> 5 Baths</span><span><i class="fas fa-ruler-combined"></i> 4,500 sqft</span></div>
-                                <div class="card-footer"><h3>Mohali Luxury Villa</h3><p class="price">₹85,000/month</p></div>
+                                <div class="card-footer"><h3>Mohali Luxury Villa</h3><p class="price">₹85,000/month</p><button class="fav-button">⭐</button></div>
                             </div>
                         </div>
                         <div class="property-card" data-address="18 Mall Road, Amritsar, Punjab" data-phone="+91 98765-43211">
                             <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=2070&auto=format&fit=crop" alt="Amritsar Family Home">
                             <div class="card-content">
                                  <div class="card-specs"><span><i class="fas fa-bed"></i> 3 Beds</span><span><i class="fas fa-bath"></i> 2 Baths</span><span><i class="fas fa-ruler-combined"></i> 1,800 sqft</span></div>
-                                <div class="card-footer"><h3>Amritsar Family Home</h3><p class="price">₹35,000/month</p></div>
+                                <div class="card-footer"><h3>Amritsar Family Home</h3><p class="price">₹35,000/month</p><button class="fav-button">⭐</button></div>
                             </div>
                         </div>
                         <div class="property-card" data-address="42 Civil Lines, Jalandhar, Punjab" data-phone="+91 98765-43212">
                             <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" alt="Jalandhar Cottage">
                             <div class="card-content">
                                 <div class="card-specs"><span><i class="fas fa-bed"></i> 2 Beds</span><span><i class="fas fa-bath"></i> 1 Bath</span><span><i class="fas fa-ruler-combined"></i> 1,200 sqft</span></div>
-                                <div class="card-footer"><h3>Jalandhar Cottage</h3><p class="price">₹22,000/month</p></div>
+                                <div class="card-footer"><h3>Jalandhar Cottage</h3><p class="price">₹22,000/month</p><button class="fav-button">⭐</button></div>
                             </div>
                         </div>
                         <div class="property-card" data-address="55 Sector 70, Mohali, Punjab" data-phone="+91 98765-43214">
                             <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" alt="Mohali Apartment">
                             <div class="card-content">
                                  <div class="card-specs"><span><i class="fas fa-bed"></i> 2 Beds</span><span><i class="fas fa-bath"></i> 2 Baths</span><span><i class="fas fa-ruler-combined"></i> 1,100 sqft</span></div>
-                                <div class="card-footer"><h3>Mohali Apartment</h3><p class="price">₹28,000/month</p></div>
+                                <div class="card-footer"><h3>Mohali Apartment</h3><p class="price">₹28,000/month</p><button class="fav-button">⭐</button></div>
                             </div>
                         </div>
                         <div class="property-card" data-address="210 Phase 8, Mohali, Punjab" data-phone="+91 98765-43215">
                             <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2070&auto=format&fit=crop" alt="Mohali Townhouse">
                             <div class="card-content">
                                  <div class="card-specs"><span><i class="fas fa-bed"></i> 3 Beds</span><span><i class="fas fa-bath"></i> 2.5 Baths</span><span><i class="fas fa-ruler-combined"></i> 1,950 sqft</span></div>
-                                <div class="card-footer"><h3>Mohali Townhouse</h3><p class="price">₹42,000/month</p></div>
+                                <div class="card-footer"><h3>Mohali Townhouse</h3><p class="price">₹42,000/month</p><button class="fav-button">⭐</button></div>
                             </div>
                         </div>
                     </div>
@@ -471,6 +589,132 @@
     <footer>
         <p>&copy; 2025 HomeFinder. All Rights Reserved.</p>
     </footer>
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Update navigation based on login status
+  const loginLink = document.getElementById('loginLink');
+  const loginIcon = document.getElementById('loginIcon');
+  const loginText = document.getElementById('loginText');
+  const username = localStorage.getItem('username');
+  const role = localStorage.getItem('role') || 'user';
+  
+  if (username) {
+    // User is logged in - show enhanced profile icon
+    loginIcon.className = 'fas fa-user-circle';
+    loginIcon.style.fontSize = '1.4rem';
+    loginIcon.style.color = 'var(--primary-color)';
+    loginText.style.display = 'none';
+    if (role === 'landlord') {
+      loginLink.href = 'landlord.html';
+      loginLink.title = 'Landlord Profile';
+      loginIcon.style.color = '#ff6b35'; // Different color for landlord
+    } else {
+      loginLink.href = 'profile.html';
+      loginLink.title = 'User Profile';
+    }
+    
+    // Show dropdown menu on hover over icon and keep it open when hovering dropdown
+    const profileDropdown = document.getElementById('profileDropdown');
+    let hoverTimeout;
+    
+    function showDropdown() {
+      clearTimeout(hoverTimeout);
+      profileDropdown.classList.add('show');
+    }
+    
+    function hideDropdown() {
+      hoverTimeout = setTimeout(() => {
+        profileDropdown.classList.remove('show');
+      }, 100);
+    }
+    
+    loginIcon.addEventListener('mouseenter', showDropdown);
+    loginIcon.addEventListener('mouseleave', hideDropdown);
+    profileDropdown.addEventListener('mouseenter', showDropdown);
+    profileDropdown.addEventListener('mouseleave', hideDropdown);
+    
+    // Sign out functionality
+    document.getElementById('signoutBtn').addEventListener('click', (e) => {
+      e.preventDefault();
+      localStorage.removeItem('username');
+      localStorage.removeItem('email');
+      localStorage.removeItem('role');
+      localStorage.removeItem('currentUser');
+      window.location.href = 'log.html';
+    });
+    
+  } else {
+    // User is not logged in - show text only
+    loginIcon.style.display = 'none';
+    loginText.style.display = 'inline';
+    loginText.textContent = 'Log in';
+    loginLink.href = 'log.html';
+    loginLink.title = 'Log in';
+  }
+
+  const favButtons = document.querySelectorAll('.fav-button');
+
+  // Load favorites from localStorage or empty array
+  const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+  // Function to save favorites to localStorage
+  function saveFavorites(favs) {
+    localStorage.setItem('favorites', JSON.stringify(favs));
+  }
+
+  // Update UI on page load to show stars filled if already favorited
+  favButtons.forEach(btn => {
+    const card = btn.closest('.property-card');
+    const id = card.dataset.address; // Use address as unique id
+
+    if (favorites.some(fav => fav.dataAddress === id)) {
+      btn.textContent = '⭐'; // Filled star
+      btn.classList.add('favorited');
+    } else {
+      btn.textContent = '☆'; // Empty star
+      btn.classList.remove('favorited');
+    }
+  });
+
+  // Add click listeners to toggle favorite
+  favButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card = btn.closest('.property-card');
+      const id = card.dataset.address;
+
+      // Collect property data
+      const propertyData = {
+        dataAddress: id,
+        dataPhone: card.dataset.phone,
+        imgSrc: card.querySelector('img').src,
+        imgAlt: card.querySelector('img').alt,
+        beds: card.querySelector('.card-specs span:nth-child(1)').textContent,
+        baths: card.querySelector('.card-specs span:nth-child(2)').textContent,
+        sqft: card.querySelector('.card-specs span:nth-child(3)').textContent,
+        title: card.querySelector('.card-footer h3').textContent,
+        price: card.querySelector('.price').textContent
+      };
+
+      const index = favorites.findIndex(fav => fav.dataAddress === id);
+
+      if (index > -1) {
+        // Remove from favorites
+        favorites.splice(index, 1);
+        btn.textContent = '☆';
+        btn.classList.remove('favorited');
+      } else {
+        // Add to favorites
+        favorites.push(propertyData);
+        btn.textContent = '⭐';
+        btn.classList.add('favorited');
+      }
+
+      saveFavorites(favorites);
+    });
+  });
+});
+
+</script>
 
 </body>
 </html>

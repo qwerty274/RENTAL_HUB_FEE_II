@@ -126,16 +126,39 @@
     </footer>
 
     <script>
+    // Check if user is logged in
+    const storedUsername = localStorage.getItem('username');
+    const role = localStorage.getItem('role') || 'user';
+    
+    if (!storedUsername) {
+        // If no username found, redirect to login page
+        window.location.href = 'log.html';
+    }
+    
+    // Check if user has valid email
+    const storedEmail = localStorage.getItem('email');
+    if (storedEmail) {
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.co\.in|yahoo\.com|outlook\.com|hotmail\.com|rediffmail\.com)$/i;
+        if (!emailPattern.test(storedEmail)) {
+            alert('Your account has an invalid email address. Please sign up again with a valid email from allowed domains: @gmail.com, @yahoo.co.in, @yahoo.com, @outlook.com, @hotmail.com, @rediffmail.com');
+            // Clear invalid data and redirect to login
+            localStorage.removeItem('username');
+            localStorage.removeItem('email');
+            localStorage.removeItem('role');
+            localStorage.removeItem('currentUser');
+            window.location.href = 'log.html';
+        }
+    }
+    
     // Populate landlord data from localStorage
     const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
-    const role = localStorage.getItem('role') || currentUser.role || 'user';
     if (role !== 'landlord') {
         // If not a landlord, send to user profile
         window.location.replace('profile.html');
     }
     const nameEl = document.getElementById('llName');
     const emailEl = document.getElementById('llEmail');
-    nameEl.textContent = currentUser.username || localStorage.getItem('username') || 'Landlord';
+    nameEl.textContent = currentUser.username || storedUsername || 'Landlord';
     emailEl.textContent = currentUser.email || localStorage.getItem('email') || 'landlord@example.com';
 
     // Avatar upload
@@ -164,5 +187,6 @@
     </script>
 </body>
 </html>
+
 
 
