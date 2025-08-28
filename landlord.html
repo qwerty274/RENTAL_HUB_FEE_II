@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landlord Profile - HomeFinder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary-color: #d90429;
+            --primary-gradient: linear-gradient(45deg, #d90429, #ef233c);
+            --dark-bg: #2b2d42;
+            --light-text: #edf2f4;
+            --dark-text: #333;
+            --secondary-bg: #f8f9fa;
+        }
+        body { font-family: 'Poppins', sans-serif; line-height: 1.6; color: var(--dark-text); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        header { background: #fff; padding: 1rem 0; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 1000; }
+        header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo a { display: flex; align-items: center; gap: 10px; font-size: 1.8rem; font-weight: 700; color: var(--dark-bg); }
+        .logo img { height: 40px; width: auto; }
+        nav ul { display: flex; gap: 25px; }
+        nav a { font-weight: 500; transition: color 0.3s ease; }
+        nav a:hover, nav a.active { color: var(--primary-color); }
+
+        .page-hero { padding: 60px 20px; text-align: center; background: var(--primary-gradient); color: #fff; }
+        .page-hero h1 { font-size: 2.5rem; }
+
+        .profile-section { padding: 60px 20px; background: var(--secondary-bg); }
+        .profile-card { max-width: 900px; margin: 0 auto; background: #fff; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); padding: 32px; }
+        .header-row { display: grid; grid-template-columns: 160px 1fr; gap: 24px; align-items: center; }
+        .profile-img { width: 140px; height: 140px; border-radius: 50%; border: 4px solid var(--primary-color); background: #eee; object-fit: cover; }
+        .file-input { margin-top: 12px; font-size: 0.9rem; }
+        .title h2 { color: var(--dark-bg); margin-bottom: 6px; }
+        .subtitle { color: #666; }
+
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
+        .card { background: #fafafa; border: 1px solid #eee; border-radius: 10px; padding: 16px; }
+        .card h3 { color: var(--dark-bg); font-size: 1.1rem; margin-bottom: 10px; border-bottom: 2px solid var(--primary-color); padding-bottom: 6px; }
+        .info-row { margin: 6px 0; }
+        .info-row strong { color: var(--dark-bg); }
+
+        footer { background: var(--dark-bg); color: var(--light-text); text-align: center; padding: 20px; }
+
+        @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } .header-row { grid-template-columns: 1fr; text-align: center; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="logo.png" alt="HomeFinder Logo">
+                    <span>HomeFinder</span>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="listing.html">Properties</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="landlord.html" class="active">Landlord</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>Landlord Profile</h1>
+        </div>
+    </section>
+
+    <main class="profile-section">
+        <div class="container">
+            <div class="profile-card">
+                <div class="header-row">
+                    <div style="text-align:center">
+                        <img id="llProfilePic" src="" alt="Profile Image" class="profile-img">
+                        <input type="file" id="llProfilePicInput" accept="image/*" class="file-input">
+                    </div>
+                    <div class="title">
+                        <h2 id="llName"></h2>
+                        <p class="subtitle" id="llSubtitle">Landlord • Verified</p>
+                        <p class="info-row"><strong>Email:</strong> <span id="llEmail"></span></p>
+                    </div>
+                </div>
+
+                <div class="grid">
+                    <div class="card">
+                        <h3>Bio</h3>
+                        <p id="llBio">Experienced landlord managing residential properties. Focused on providing excellent tenant experiences. (Role: Landlord)</p>
+                    </div>
+                    <div class="card">
+                        <h3>Quick Actions</h3>
+                        <p class="info-row"><a href="listing.html" style="color: var(--primary-color); font-weight:600;">Post a new property</a></p>
+                        <p class="info-row"><a href="listing.html" style="color: var(--primary-color); font-weight:600;">View my listings</a></p>
+                    </div>
+                    <div class="card">
+                        <h3>Contact</h3>
+                        <p class="info-row"><strong>Phone:</strong> <span id="llPhone">+1 234 567 8901</span></p>
+                        <p class="info-row"><strong>Address:</strong> <span id="llAddress">123 Main St, City, Country</span></p>
+                    </div>
+                    <div class="card">
+                        <h3>Account</h3>
+                        <button id="logoutBtn" style="padding:10px 16px; border:none; border-radius:8px; background: var(--primary-color); color:#fff; font-weight:600; cursor:pointer;">Log out</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 HomeFinder. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+    // Populate landlord data from localStorage
+    const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    const role = localStorage.getItem('role') || currentUser.role || 'user';
+    if (role !== 'landlord') {
+        // If not a landlord, send to user profile
+        window.location.replace('profile.html');
+    }
+    const nameEl = document.getElementById('llName');
+    const emailEl = document.getElementById('llEmail');
+    nameEl.textContent = currentUser.username || localStorage.getItem('username') || 'Landlord';
+    emailEl.textContent = currentUser.email || localStorage.getItem('email') || 'landlord@example.com';
+
+    // Avatar upload
+    const llInput = document.getElementById('llProfilePicInput');
+    const llImg = document.getElementById('llProfilePic');
+    llImg.src = '';
+    llInput?.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                llImg.src = evt.target.result;
+                llImg.style.background = 'none';
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // Logout
+    document.getElementById('logoutBtn').addEventListener('click', function() {
+        localStorage.removeItem('currentUser');
+        // keep role maybe cleared for safety
+        localStorage.removeItem('role');
+        window.location.href = 'log.html';
+    });
+    </script>
+</body>
+</html>
+
+

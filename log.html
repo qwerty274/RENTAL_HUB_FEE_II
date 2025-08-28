@@ -401,6 +401,13 @@
                                     <span class="error-message"></span>
                                 </div>
                                 <div class="input-group">
+                                    <i class='bx bxs-user-detail'></i>
+                                    <select id="signupRole" style="width:100%; padding: 1rem 3rem; background-color: var(--gray); border-radius: .5rem; border: 0.125rem solid var(--white); outline: none; color: #333;">
+                                        <option value="user">User</option>
+                                        <option value="landlord">Landlord</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
                                     <i class='bx bxs-lock-alt'></i>
                                     <input type="password" id="signupPassword" placeholder="Password" required>
                                     <span class="error-message"></span>
@@ -440,6 +447,13 @@
                                     <i class='bx bxs-lock-alt'></i>
                                     <input type="password" id="loginPassword" placeholder="Password" required>
                                     <span class="error-message"></span>
+                                </div>
+                                <div class="input-group">
+                                    <i class='bx bxs-user-detail'></i>
+                                    <select id="loginRole" style="width:100%; padding: 1rem 3rem; background-color: var(--gray); border-radius: .5rem; border: 0.125rem solid var(--white); outline: none; color: #333;">
+                                        <option value="user">User</option>
+                                        <option value="landlord">Landlord</option>
+                                    </select>
                                 </div>
                                 <button type="submit">
                                     Sign in
@@ -553,7 +567,21 @@
             }
             if (!valid) {
                 e.preventDefault();
+                return;
             }
+            // Store signup data and redirect by role
+            e.preventDefault();
+            const role = document.getElementById('signupRole').value;
+            const userData = {
+                username: username.value.trim(),
+                email: email.value.trim(),
+                role: role
+            };
+            localStorage.setItem('username', userData.username);
+            localStorage.setItem('email', userData.email);
+            localStorage.setItem('role', userData.role);
+            localStorage.setItem('currentUser', JSON.stringify(userData));
+            window.location.href = role === 'landlord' ? 'landlord.html' : 'profile.html';
         });
 
         // Validation for Login Form + redirect
@@ -579,11 +607,19 @@
             }
             if (!valid) {
                 e.preventDefault();
-            } else {
-                // Simulate successful login and redirect
-                e.preventDefault();
-                window.location.href = 'index.html';
+                return;
             }
+            // Simulate successful login and redirect with role
+            e.preventDefault();
+            const role = document.getElementById('loginRole').value;
+            const currentUser = {
+                username: username.value.trim(),
+                role: role
+            };
+            localStorage.setItem('username', currentUser.username);
+            localStorage.setItem('role', currentUser.role);
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            window.location.href = role === 'landlord' ? 'landlord.html' : 'profile.html';
         });
     </script>
 
