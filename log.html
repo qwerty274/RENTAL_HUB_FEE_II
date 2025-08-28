@@ -278,16 +278,40 @@
         }
 
         /* RESPONSIVE STYLES */
+        @media only screen and (max-width: 900px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 10px;
+                margin-right: 0;
+                font-size: 1rem;
+            }
+            header {
+                padding: 10px 2%;
+            }
+            .form-wrapper {
+                max-width: 100%;
+            }
+        }
         @media only screen and (max-width: 768px) {
             .nav-links {
-                display: none; /* Simple hiding for mobile, can be replaced with a hamburger menu */
+                display: none; /* Hide for mobile, can be replaced with hamburger menu */
             }
-
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
             .col {
                 width: 100%;
             }
+            .container {
+                height: auto;
+                min-height: 100vh;
+            }
+            .row {
+                flex-direction: column;
+                height: auto;
+            }
         }
-        
         @media only screen and (max-width: 425px) {
             .container::before,
             .container.sign-in::before,
@@ -299,69 +323,57 @@
                 transform: none;
                 right: 0;
             }
-
             .container.sign-in .col.sign-in,
             .container.sign-up .col.sign-up {
                 transform: translateY(0);
             }
-
             .content-row {
                 align-items: flex-start !important;
             }
-
             .content-row .col {
                 transform: translateY(0);
                 background-color: unset;
             }
-
             .col {
                 width: 100%;
-                position: absolute;
-                padding: 2rem;
+                position: static;
+                padding: 1rem;
                 background-color: var(--white);
-                border-top-left-radius: 2rem;
-                border-top-right-radius: 2rem;
-                transform: translateY(100%);
-                transition: 1s ease-in-out;
+                border-radius: 1rem;
+                transform: none;
+                transition: none;
             }
-
             .row {
-                align-items: flex-end;
-                justify-content: flex-end;
+                align-items: flex-start;
+                justify-content: flex-start;
             }
-
             .form {
                 box-shadow: none;
                 margin: 0;
-                padding: 0;
+                padding: 0.5rem;
             }
-
             .text {
                 margin: 0;
             }
-
             .text p {
                 display: none;
             }
-
             .text h2 {
                 margin: .5rem;
-                font-size: 2rem;
+                font-size: 1.5rem;
             }
             .logo a {
-            display: flex; /* Aligns image and text side-by-side */
-            align-items: center; /* Vertically centers them */
-            gap: 10px; /* Adds a small space between the logo and text */
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--dark-bg);
-        }
-
-        .logo img {
-            height: -30px; /* Adjust the height of your logo as needed */
-            width: auto;
-        }
-
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 1.2rem;
+                font-weight: 700;
+                color: var(--dark-bg);
+            }
+            .logo img {
+                height: 24px;
+                width: auto;
+            }
         }
     </style>
 </head>
@@ -631,7 +643,7 @@
             localStorage.setItem('username', currentUser.username);
             localStorage.setItem('role', currentUser.role);
             localStorage.setItem('currentUser', JSON.stringify(currentUser));
-            window.location.href = role === 'landlord' ? 'landlord.html' : 'profile.html';
+            window.location.href = role === 'landlord' ? 'landlord.html' : 'index.html';
         });
     </script>
 
