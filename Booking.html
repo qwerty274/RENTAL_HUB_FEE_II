@@ -47,6 +47,53 @@
     }
     .brand h1 { font-size: 20px; margin: 0; }
 
+    /* Profile Dropdown Styles */
+    .profile-dropdown {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: #fff;
+        border: 1px solid #eee;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        min-width: 180px;
+        z-index: 1000;
+    }
+
+    #loginLink {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    #loginLink:hover .profile-dropdown {
+        display: block;
+    }
+
+    .profile-dropdown a {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 16px;
+        color: var(--text);
+        transition: background-color 0.2s;
+    }
+
+    .profile-dropdown a:hover {
+        background-color: #f8f9fa;
+    }
+
+    .signout-btn {
+        border-top: 1px solid #eee;
+        color: #dc2626 !important;
+    }
+
+    #loginIcon {
+        font-size: 1.2rem;
+    }
+
     .grid {
       display: grid;
       grid-template-columns: 1.3fr .9fr;
@@ -660,9 +707,35 @@ nav a:hover, nav a.active {
       setTimeout(()=>{
         btn.disabled = false; btn.textContent = prev;
         const txn = genId().replace('RH','TXN');
+        
+        // Save booking data to localStorage
+        const bookingData = {
+            transactionId: txn,
+            propertyName: localStorage.getItem('selectedPropertyName') || 'Property',
+            propertyLocation: localStorage.getItem('selectedPropertyLocation') || 'Location',
+            amount: el('total').textContent,
+            bookingDate: new Date().toISOString(),
+            status: 'Completed',
+            tenantName: el('name').value,
+            startDate: el('start').value,
+            paymentMethod: state.method.toUpperCase()
+        };
+
+        // Get existing bookings or initialize empty array
+        const existingBookings = JSON.parse(localStorage.getItem('bookingHistory')) || [];
+        
+        // Add new booking to the beginning of the array
+        existingBookings.unshift(bookingData);
+        
+        // Save updated bookings back to localStorage
+        localStorage.setItem('bookingHistory', JSON.stringify(existingBookings));
+
         toast(`Payment successful! Transaction ${txn}`, 'success');
-        // Here you would send details to your backend:
-        // fetch('/api/checkout', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({...}) })
+        
+        // Redirect to profile page after 2 seconds
+        setTimeout(() => {
+            window.location.href = 'profile.html';
+        }, 2000);
       }, 1400);
     });
   </script>

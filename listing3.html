@@ -4,7 +4,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listings - Page 3 - HomeSpot</title>
-    <!-- [Head content is the same as above] -->
+    <!-- [Head content is the same as                    <li><a href="listing.html">Listings</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="log.html" id="loginLink">
+                        <i class="fas fa-user" id="loginIcon"></i>
+                        <span id="loginText">Log in</span>
+                        <div class="profile-dropdown" id="profileDropdown">
+                            <a href="fav.html"><i class="fas fa-heart"></i> Favorites</a>
+                            <a href="#" id="historyLink"><i class="fas fa-history"></i> History</a>
+                            <a href="#" id="signoutBtn" class="signout-btn"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+                        </div>
+                    </a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get DOM elements
+            const loginLink = document.getElementById('loginLink');
+            const loginIcon = document.getElementById('loginIcon');
+            const loginText = document.getElementById('loginText');
+            const profileDropdown = document.getElementById('profileDropdown');
+            const username = localStorage.getItem('username');
+            const role = localStorage.getItem('role') || 'user';
+
+            // Check login status
+            if (username) {
+                // User is logged in - show enhanced profile icon
+                loginIcon.className = 'fas fa-user-circle';
+                loginIcon.style.fontSize = '1.4rem';
+                loginIcon.style.color = 'var(--primary-color)';
+                loginText.style.display = 'none';
+                if (role === 'landlord') {
+                    loginLink.href = 'landlord.html';
+                    loginLink.title = 'Landlord Profile';
+                    loginIcon.style.color = '#ff6b35'; // Different color for landlord
+                } else {
+                    loginLink.href = 'profile.html';
+                    loginLink.title = 'User Profile';
+                }
+
+                // Show dropdown menu on hover
+                let hoverTimeout;
+
+                function showDropdown() {
+                    clearTimeout(hoverTimeout);
+                    profileDropdown.style.display = 'block';
+                }
+
+                function hideDropdown() {
+                    hoverTimeout = setTimeout(() => {
+                        profileDropdown.style.display = 'none';
+                    }, 100);
+                }
+
+                loginIcon.addEventListener('mouseenter', showDropdown);
+                loginIcon.addEventListener('mouseleave', hideDropdown);
+                profileDropdown.addEventListener('mouseenter', showDropdown);
+                profileDropdown.addEventListener('mouseleave', hideDropdown);
+
+                // History link functionality
+                document.getElementById('historyLink').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.location.href = 'profile.html#bookingHistory';
+                });
+
+                // Sign out functionality
+                document.getElementById('signoutBtn').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    localStorage.removeItem('username');
+                    localStorage.removeItem('email');
+                    localStorage.removeItem('role');
+                    localStorage.removeItem('currentUser');
+                    window.location.href = 'log.html';
+                });
+
+            } else {
+                // User is not logged in
+                loginIcon.style.display = 'none';
+                loginText.style.display = 'inline';
+                loginText.textContent = 'Log in';
+                loginLink.href = 'log.html';
+                loginLink.title = 'Log in';
+            }
+        });
+    </script> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
