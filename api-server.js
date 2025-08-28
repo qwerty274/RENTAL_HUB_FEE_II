@@ -242,7 +242,7 @@ app.get('/api/property/:id', (req, res) => {
 app.get('/api/health', (req, res) => {
     res.json({
         success: true,
-        message: 'HomeFinder API is running',
+        message: 'HomeSpot API is running',
         timestamp: new Date().toISOString(),
         version: propertiesData.metadata.apiVersion
     });
@@ -267,7 +267,7 @@ app.use('*', (req, res) => {
 
 // Start server
 app.listen(PORT, () => {
-    console.log(`🚀 HomeFinder API Server running on port ${PORT}`);
+    console.log(`🚀 HomeSpot API Server running on port ${PORT}`);
     console.log(`📊 Total Cities: ${propertiesData.metadata.totalCities}`);
     console.log(`🏠 Total Properties: ${propertiesData.metadata.totalProperties}`);
     console.log(`🌐 API Base URL: http://localhost:${PORT}/api`);

@@ -1,7 +1,7 @@
 {
-  "name": "homefinder-api",
+  "name": "homespot-api",
   "version": "1.0.0",
-  "description": "HomeFinder Rental Properties API for Punjab Cities",
+  "description": "HomeSpot Rental Properties API for Punjab Cities",
   "main": "api-server.js",
   "scripts": {
     "start": "node api-server.js",
@@ -16,7 +16,7 @@
     "api",
     "real-estate"
   ],
-  "author": "HomeFinder Team",
+  "author": "HomeSpot Team",
   "license": "MIT",
   "dependencies": {
     "express": "^4.18.2",

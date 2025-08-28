@@ -1,4 +1,4 @@
-# HomeFinder - Rental Properties API
+# HomeSpot - Rental Properties API
 
 A comprehensive rental properties search platform focused on Punjab, India cities including Mohali, Ludhiana, Amritsar, and Jalandhar.
 
@@ -166,4 +166,4 @@ For questions or support, please contact the development team.
 
 ---
 
-**HomeFinder** - Making your search for the perfect rental home in Punjab simple and efficient! 🏠✨
+**HomeSpot** - Making your search for the perfect rental home in Punjab simple and efficient! 🏠✨
