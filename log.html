@@ -532,15 +532,15 @@
             } else {
                 usernameError.textContent = '';
             }
-            // Email
+            // Email with specific domain validation
             const email = document.getElementById('signupEmail');
             const emailError = email.nextElementSibling;
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.co\.in|yahoo\.com|outlook\.com|hotmail\.com|rediffmail\.com)$/i;
             if (email.value.trim() === '') {
                 emailError.textContent = 'Email is required.';
                 valid = false;
             } else if (!emailPattern.test(email.value.trim())) {
-                emailError.textContent = 'Enter a valid email address.';
+                emailError.textContent = 'Please use a valid email. Allowed domains: @gmail.com, @yahoo.co.in, @yahoo.com, @outlook.com, @hotmail.com, @rediffmail.com';
                 valid = false;
             } else {
                 emailError.textContent = '';
@@ -605,6 +605,18 @@
             } else {
                 passwordError.textContent = '';
             }
+            
+            // Check if user has valid email in localStorage (from previous signup)
+            const storedEmail = localStorage.getItem('email');
+            if (storedEmail) {
+                const emailPattern = /^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.co\.in|yahoo\.com|outlook\.com|hotmail\.com|rediffmail\.com)$/i;
+                if (!emailPattern.test(storedEmail)) {
+                    alert('Your account has an invalid email address. Please sign up again with a valid email from allowed domains: @gmail.com, @yahoo.co.in, @yahoo.com, @outlook.com, @hotmail.com, @rediffmail.com');
+                    e.preventDefault();
+                    return;
+                }
+            }
+            
             if (!valid) {
                 e.preventDefault();
                 return;
