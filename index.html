@@ -64,23 +64,34 @@
     }
 
     .logo a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
         font-size: 1.8rem;
         font-weight: 700;
         color: var(--dark-bg);
     }
 
     nav ul {
-        display: flex;
-        gap: 25px;
-    }
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
 
-    nav a {
-        font-weight: 500;
-        transition: color 0.3s ease;
-    }
+        nav a {
+            font-weight: 500;
+            color: var(--dark-text);
+            text-decoration: none;
+            padding: 8px 4px;
+            border-radius: 4px;
+            transition: color 0.3s ease;
+        }
 
-            nav a:hover, nav a.active {
-            color: var(--primary-color);
+        nav a:hover,
+        nav a.active {
+        color: var(--primary-color);
         }
 
         /* Enhanced Profile Icon Styles */
@@ -399,7 +410,7 @@
 }
 
 
-    /* --- Responsive Adjustments --- */
+    /* --- Responsive Adjustments --- */ */
     @media (max-width: 768px) {
         .hero-content h1 {
             font-size: 2.5rem;

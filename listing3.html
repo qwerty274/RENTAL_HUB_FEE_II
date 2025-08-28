@@ -21,9 +21,27 @@
         header { background: #fff; padding: 1rem 0; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 1000; }
         header .container { display: flex; justify-content: space-between; align-items: center; }
         .logo a { font-size: 1.8rem; font-weight: 700; color: var(--dark-bg); }
-        nav ul { display: flex; gap: 30px; margin-right: 192px;}
-        nav a { font-weight: 500; transition: color 0.3s ease; }
-        nav a:hover, nav a.active { color: var(--primary-color); }
+        nav ul {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            font-weight: 500;
+            color: var(--dark-text);
+            text-decoration: none;
+            padding: 8px 4px;
+            border-radius: 4px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover,
+        nav a.active {
+        color: var(--primary-color);
+        }
         .page-hero { padding: 60px 20px; text-align: center; color: var(--light-text); background: var(--dark-bg-gradient); }
         .page-hero h1 { font-size: 3rem; font-weight: 700; }
         .filter-section { padding: 40px 0; background: #fff; border-bottom: 1px solid #eee; }
@@ -180,6 +198,22 @@
             color: #666;
             font-size: 1rem;
         }
+        .book-btn {
+        display: inline-block;
+        margin-top: 8px;
+        padding: 8px 16px;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        }
+        .book-btn:hover {
+        background: #b0020f; /* Slightly darker shade for hover */
+        }
     </style>
 </head>
 <body>
@@ -248,7 +282,7 @@
                         <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=2070&auto=format&fit=crop" alt="Mohali Studio Flat">
                         <div class="card-content">
                             <div class="card-specs"><span><i class="fas fa-bed"></i> 1 Bed</span><span><i class="fas fa-bath"></i> 1 Bath</span><span><i class="fas fa-ruler-combined"></i> 650 sqft</span></div>
-                            <div class="card-footer"><h3>Mohali Studio Flat</h3><p class="price">₹22,000/month</p></div>
+                            <div class="card-footer"><h3>Mohali Studio Flat</h3><p class="price">₹22,000/month</p><button class="book-btn">Book Now</button></div>
                         </div>
                     </div>
                     <!-- Property Card 14 -->
@@ -256,7 +290,7 @@
                         <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" alt="Mohali Mountain View Villa">
                         <div class="card-content">
                             <div class="card-specs"><span><i class="fas fa-bed"></i> 4 Beds</span><span><i class="fas fa-bath"></i> 3 Baths</span><span><i class="fas fa-ruler-combined"></i> 2,900 sqft</span></div>
-                            <div class="card-footer"><h3>Mohali Mountain View Villa</h3><p class="price">₹65,000/month</p></div>
+                            <div class="card-footer"><h3>Mohali Mountain View Villa</h3><p class="price">₹65,000/month</p><button class="book-btn">Book Now</button></div>
                         </div>
                     </div>
                     <!-- Property Card 15 -->
@@ -264,7 +298,7 @@
                         <img src="https://images.unsplash.com/photo-1598228723793-52759bba239c?q=80&w=1974&auto=format&fit=crop" alt="Ludhiana Farmhouse">
                         <div class="card-content">
                             <div class="card-specs"><span><i class="fas fa-bed"></i> 3 Beds</span><span><i class="fas fa-bath"></i> 2 Baths</span><span><i class="fas fa-ruler-combined"></i> 2,100 sqft</span></div>
-                            <div class="card-footer"><h3>Ludhiana Farmhouse</h3><p class="price">₹35,000/month</p></div>
+                            <div class="card-footer"><h3>Ludhiana Farmhouse</h3><p class="price">₹35,000/month</p><button class="book-btn">Book Now</button></div>
                         </div>
                     </div>
                     <!-- Property Card 16 -->
@@ -272,7 +306,7 @@
                         <img src="https://images.unsplash.com/photo-1541123356219-284ebe98ae3b?q=80&w=2070&auto=format&fit=crop" alt="Jalandhar Artistic Villa">
                         <div class="card-content">
                             <div class="card-specs"><span><i class="fas fa-bed"></i> 2 Beds</span><span><i class="fas fa-bath"></i> 2 Baths</span><span><i class="fas fa-ruler-combined"></i> 1,600 sqft</span></div>
-                            <div class="card-footer"><h3>Jalandhar Artistic Villa</h3><p class="price">₹28,000/month</p></div>
+                            <div class="card-footer"><h3>Jalandhar Artistic Villa</h3><p class="price">₹28,000/month</p><button class="book-btn">Book Now</button></div>
                         </div>
                     </div>
                     <!-- Property Card 17 -->
@@ -280,7 +314,7 @@
                         <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2070&auto=format&fit=crop" alt="Mohali Modern Condo">
                         <div class="card-content">
                             <div class="card-specs"><span><i class="fas fa-bed"></i> 1 Bed</span><span><i class="fas fa-bath"></i> 1 Bath</span><span><i class="fas fa-ruler-combined"></i> 800 sqft</span></div>
-                            <div class="card-footer"><h3>Mohali Modern Condo</h3><p class="price">₹25,000/month</p></div>
+                            <div class="card-footer"><h3>Mohali Modern Condo</h3><p class="price">₹25,000/month</p><button class="book-btn">Book Now</button></div>
                         </div>
                     </div>
                     <!-- Property Card 18 -->
@@ -288,7 +322,7 @@
                         <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1974&auto=format&fit=crop" alt="Amritsar Family Home">
                         <div class="card-content">
                             <div class="card-specs"><span><i class="fas fa-bed"></i> 4 Beds</span><span><i class="fas fa-bath"></i> 2.5 Baths</span><span><i class="fas fa-ruler-combined"></i> 2,400 sqft</span></div>
-                            <div class="card-footer"><h3>Amritsar Family Home</h3><p class="price">₹42,000/month</p></div>
+                            <div class="card-footer"><h3>Amritsar Family Home</h3><p class="price">₹42,000/month</p><button class="book-btn">Book Now</button></div>
                         </div>
                     </div>
                 </div>
@@ -343,6 +377,11 @@
                 roomSelect.value = '';
                 showAllProperties();
                 updateResultsDisplay('All Properties', propertyCards.length);
+            });
+            document.querySelectorAll('.book-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                window.location.href = 'booking.html';  // Your booking page URL
+                });
             });
             
             // Filter properties based on selected criteria
