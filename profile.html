@@ -167,6 +167,15 @@
             margin-bottom: 16px;
         }
 
+        /* Clear History Button Hover */
+        #clearHistoryBtn:hover {
+            background-color: #b91c1c !important;
+        }
+
+        #clearHistoryBtn:active {
+            transform: translateY(1px);
+        }
+
         /* Footer */
         footer { background: var(--dark-bg); color: var(--light-text); text-align: center; padding: 20px; }
 
@@ -368,9 +377,6 @@
         return emailRegex.test(email);
     }
 
-    // Show edit form
-    editEmailBtn.addEventListener('click', () => {
-
     // Function to format date
     function formatDate(dateString) {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -386,7 +392,27 @@
         const bookings = JSON.parse(localStorage.getItem('bookingHistory')) || [];
         
         bookingHistorySection.innerHTML = `
-            <h2>Booking History</h2>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2 style="margin-bottom: 0;">Booking History</h2>
+                ${bookings.length > 0 ? `
+                    <button id="clearHistoryBtn" style="
+                        padding: 8px 16px;
+                        background-color: #dc2626;
+                        color: white;
+                        border: none;
+                        border-radius: 4px;
+                        font-size: 0.9rem;
+                        cursor: pointer;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                        transition: background-color 0.2s;
+                    ">
+                        <i class="fas fa-trash-alt"></i>
+                        Clear History
+                    </button>
+                ` : ''}
+            </div>
             <div id="bookingList" class="booking-list">
                 ${bookings.length === 0 ? `
                     <div class="empty-state">
@@ -414,17 +440,65 @@
         // Insert the booking history section after the profile card
         const profileSection = document.querySelector('.profile-section');
         profileSection.appendChild(bookingHistorySection);
-
-        // If URL has #bookingHistory, scroll to it
-        if(window.location.hash === '#bookingHistory') {
-            setTimeout(() => {
-                document.getElementById('bookingHistory').scrollIntoView({ behavior: 'smooth' });
-            }, 100);
-        }
     }
 
     // Display booking history when page loads
     displayBookingHistory();
+
+    // Add event listener for clear history button
+    document.addEventListener('click', function(e) {
+        if (e.target && e.target.id === 'clearHistoryBtn' || e.target.closest('#clearHistoryBtn')) {
+            // Show confirmation dialog
+            if (confirm('Are you sure you want to clear your entire booking history? This action cannot be undone.')) {
+                // Clear booking history from localStorage
+                localStorage.removeItem('bookingHistory');
+                
+                // Show success message
+                const successMsg = document.createElement('div');
+                successMsg.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background-color: #10b981;
+                    color: white;
+                    padding: 12px 24px;
+                    border-radius: 4px;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                    z-index: 1000;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                `;
+                successMsg.innerHTML = `
+                    <i class="fas fa-check-circle"></i>
+                    Booking history cleared successfully
+                `;
+                document.body.appendChild(successMsg);
+                
+                // Remove the message after 3 seconds
+                setTimeout(() => {
+                    successMsg.remove();
+                }, 3000);
+                
+                // Refresh the booking history display
+                const oldHistory = document.getElementById('bookingHistory');
+                if (oldHistory) {
+                    oldHistory.remove();
+                }
+                displayBookingHistory();
+            }
+        }
+    });
+
+    // If URL has #bookingHistory, scroll to it
+    if(window.location.hash === '#bookingHistory') {
+        setTimeout(() => {
+            document.getElementById('bookingHistory').scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+    }
+
+    // Show edit form
+    editEmailBtn.addEventListener('click', () => {
         emailEditForm.style.display = 'block';
         emailInput.value = currentEmail;
         emailError.textContent = '';
