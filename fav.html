@@ -14,7 +14,29 @@
   header {
     background: #fff;
     border-bottom: 1px solid #eee;
-    padding: 1rem 20px;
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .logo a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #2b2d42;
+    text-decoration: none;
   }
   nav ul {
     display: flex;
@@ -22,20 +44,54 @@
     list-style: none;
     margin: 0;
     padding: 0;
+    align-items: center;
   }
-
-    nav a {
+  nav a {
     font-weight: 500;
-    color: var(--dark-text);
+    color: #333;
     text-decoration: none;
     padding: 8px 4px;
     border-radius: 4px;
-    transition: color 0.3s ease;
+    transition: color 0.3s, background 0.3s;
   }
-
   nav a:hover,
   nav a.active {
     color: #d90429;
+    background: #f8f9fa44;
+  }
+  @media (max-width: 900px) {
+    .navbar {
+      padding: 0 10px;
+    }
+    nav ul {
+      gap: 18px;
+    }
+  }
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+      height: auto;
+      padding: 0 4px;
+    }
+    nav ul {
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  }
+  @media (max-width: 480px) {
+    .navbar {
+      padding: 0 2px;
+    }
+    nav ul {
+      gap: 4px;
+    }
+    .logo a {
+      font-size: 1.2rem;
+    }
   }
 
   /* Enhanced Profile Icon Styles */
@@ -181,24 +237,31 @@
 </head>
 <body>
 <header>
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About Us</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="faq.html">FAQ</a></li>
-      <li><a href="listing.html">Listings</a></li>
-      <li><a href="contact.html">Contact Us</a></li>
-      <li><a href="log.html" id="loginLink"><i class="fas fa-user" id="loginIcon"></i><span id="loginText">Log in</span>
-        <div class="profile-dropdown" id="profileDropdown">
-          <a href="fav.html"><i class="fas fa-heart"></i> Favorites</a>
-          <a href="#" id="historyLink"><i class="fas fa-history"></i> History</a>
-          <a href="#" id="signoutBtn" class="signout-btn"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
-        </div>
-      </a></li>
-
-    </ul>
-  </nav>
+  <div class="navbar">
+    <div class="logo">
+      <a href="index.html">
+        <img src="logo.png" alt="HomeSpot Logo" style="height:32px; width:auto;">
+        <span>HomeSpot</span>
+      </a>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="listing.html">Listings</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="log.html" id="loginLink"><i class="fas fa-user" id="loginIcon"></i><span id="loginText">Log in</span>
+          <div class="profile-dropdown" id="profileDropdown">
+            <a href="fav.html"><i class="fas fa-heart"></i> Favorites</a>
+            <a href="#" id="historyLink"><i class="fas fa-history"></i> History</a>
+            <a href="#" id="signoutBtn" class="signout-btn"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+          </div>
+        </a></li>
+      </ul>
+    </nav>
+  </div>
 </header>
 
 <h1>Your Favorite Properties</h1>

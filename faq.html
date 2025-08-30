@@ -259,7 +259,42 @@
                     <li><a href="faq.html">FAQ</a></li>
                     <li><a href="listing.html">Listings</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="log.html">Login</a></li>
+                    <li><a href="log.html" id="loginLink"><i class="fas fa-user" id="loginIcon"></i><span id="loginText">Log in</span></a></li>
+</ul>
+                        </nav>
+
+                </div>
+        </header>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const loginLink = document.getElementById('loginLink');
+                const loginIcon = document.getElementById('loginIcon');
+                const loginText = document.getElementById('loginText');
+                const username = localStorage.getItem('username');
+                const role = localStorage.getItem('role') || 'user';
+                if (username) {
+                    loginIcon.className = 'fas fa-user-circle';
+                    loginIcon.style.fontSize = '1.4rem';
+                    loginIcon.style.color = '#d90429';
+                    loginText.style.display = 'none';
+                    if (role === 'landlord') {
+                        loginLink.href = 'landlord.html';
+                        loginLink.title = 'Landlord Profile';
+                        loginIcon.style.color = '#ff6b35';
+                    } else {
+                        loginLink.href = 'profile.html';
+                        loginLink.title = 'User Profile';
+                    }
+                } else {
+                    loginIcon.style.display = 'none';
+                    loginText.style.display = 'inline';
+                    loginText.textContent = 'Log in';
+                    loginLink.href = 'log.html';
+                    loginLink.title = 'Log in';
+                }
+            });
+        </script>
                 </ul>
             </nav>
 
