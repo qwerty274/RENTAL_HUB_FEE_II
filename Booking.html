@@ -415,44 +415,44 @@ nav a:hover, nav a.active {
 
           <div class="row">
             <div>
-              <label>Property</label>
+              <label for="property">Property</label>
               <input id="property" value="2BHK • Lakeside Residency" />
             </div>
             <div>
-              <label>City</label>
+              <label for="city">City</label>
               <input id="city" value="Pune" />
             </div>
           </div>
 
           <div class="row">
             <div>
-              <label>Tenant Name</label>
+              <label for="name">Tenant Name</label>
               <input id="name" placeholder="Full name" />
             </div>
             <div>
-              <label>Phone</label>
+              <label for="phone">Phone</label>
               <input id="phone" placeholder="99999 99999" />
             </div>
           </div>
 
           <div class="row">
             <div>
-              <label>Email</label>
+              <label for="email">Email</label>
               <input id="email" placeholder="you@email.com" type="email" />
             </div>
             <div>
-              <label>Start Date</label>
+              <label for="start">Start Date</label>
               <input id="start" type="date" />
             </div>
           </div>
 
           <div class="row">
             <div>
-              <label>Rent (per month)</label>
+              <label for="rent">Rent (per month)</label>
               <input id="rent" type="number" value="20000" min="0" />
             </div>
             <div>
-              <label>Duration</label>
+              <label for="months">Duration</label>
               <select id="months">
                 <option value="1">1 Month</option>
                 <option value="3">3 Months</option>
@@ -468,11 +468,11 @@ nav a:hover, nav a.active {
           </div>
           <div class="row" id="depositRow" style="display:none; margin-top:8px;">
             <div>
-              <label>Deposit Amount</label>
+              <label for="deposit">Deposit Amount</label>
               <input id="deposit" type="number" value="20000" min="0" />
             </div>
             <div>
-              <label>Notes (optional)</label>
+              <label for="note">Notes (optional)</label>
               <input id="note" placeholder="Eg. Deposit paid earlier" />
             </div>
           </div>
@@ -721,23 +721,4 @@ nav a:hover, nav a.active {
             paymentMethod: state.method.toUpperCase()
         };
 
-        // Get existing bookings or initialize empty array
-        const existingBookings = JSON.parse(localStorage.getItem('bookingHistory')) || [];
-        
-        // Add new booking to the beginning of the array
-        existingBookings.unshift(bookingData);
-        
-        // Save updated bookings back to localStorage
-        localStorage.setItem('bookingHistory', JSON.stringify(existingBookings));
-
-        toast(`Payment successful! Transaction ${txn}`, 'success');
-        
-        // Redirect to profile page after 2 seconds
-        setTimeout(() => {
-            window.location.href = 'profile.html';
-        }, 2000);
-      }, 1400);
-    });
-  </script>
-</body>
-</html>
+        // Get existing bookings or initialize empty
