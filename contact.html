@@ -532,6 +532,11 @@
             loginLink.href = 'log.html';
             loginLink.title = 'Log in';
         }
+
+        document.getElementById('historyLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = 'profile.html#bookingHistory';
+        });
     });
     </script>
 

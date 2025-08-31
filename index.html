@@ -775,6 +775,14 @@ document.addEventListener('DOMContentLoaded', () => {
       saveFavorites(favorites);
     });
   });
+
+  var historyLink = document.getElementById('historyLink');
+  if (historyLink) {
+    historyLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.location.href = 'profile.html#bookingHistory';
+    });
+  }
 });
 
 </script>

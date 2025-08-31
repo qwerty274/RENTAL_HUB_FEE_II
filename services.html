@@ -307,10 +307,13 @@
                 }
 
                 // Handle history link click
-                document.getElementById('historyLink').addEventListener('click', (e) => {
+                var historyLink = document.getElementById('historyLink');
+                if (historyLink) {
+                  historyLink.addEventListener('click', function(e) {
                     e.preventDefault();
                     window.location.href = 'profile.html#bookingHistory';
-                });
+                  });
+                }
 
                 // Show dropdown menu on hover
                 let hoverTimeout;

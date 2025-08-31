@@ -565,10 +565,13 @@
                 profileDropdown.addEventListener('mouseleave', hideDropdown);
 
                 // History link functionality
-                document.getElementById('historyLink').addEventListener('click', (e) => {
-                    e.preventDefault();
-                    window.location.href = 'profile.html#bookingHistory';
-                });
+                var historyLink = document.getElementById('historyLink');
+                if (historyLink) {
+                    historyLink.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        window.location.href = 'profile.html#bookingHistory';
+                    });
+                }
 
                 // Sign out functionality
                 document.getElementById('signoutBtn').addEventListener('click', (e) => {

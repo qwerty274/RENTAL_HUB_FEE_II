@@ -367,6 +367,11 @@
       window.location.href = 'log.html';
     });
     
+    document.getElementById('historyLink').addEventListener('click', function(e) {
+      e.preventDefault();
+      window.location.href = 'profile.html#bookingHistory';
+    });
+    
   } else {
     // User is not logged in - show text only
     loginIcon.style.display = 'none';
