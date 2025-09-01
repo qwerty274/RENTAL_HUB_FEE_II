@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - HomeSpot</title>
-    <!-- Google Fonts (Poppins) -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for Icons -->
+ 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
     <style>
-        /* --- Basic Reset & Global Styles --- */
+
         * {
             margin: 0;
             padding: 0;
@@ -55,7 +55,6 @@
             list-style: none;
         }
 
-        /* --- Header & Navigation --- */
         header {
             background: #fff;
             padding: 1rem 0;
@@ -99,7 +98,7 @@
         color: var(--primary-color);
         }
 
-        /* Enhanced Profile Icon Styles */
+ 
         #loginIcon {
             font-size: 1.2rem;
             transition: all 0.3s ease;
@@ -119,7 +118,7 @@
             transition: all 0.3s ease;
         }
 
-        /* Profile Dropdown Menu */
+
         .profile-dropdown {
             position: absolute;
             top: 100%;
@@ -170,7 +169,7 @@
             color: #721c24;
         }
 
-        /* --- Page Hero Section --- */
+
         .page-hero {
             padding: 60px 20px;
             text-align: center;
@@ -183,7 +182,7 @@
             font-weight: 700;
         }
         
-        /* --- Contact Section --- */
+       
         .contact-section {
             padding: 80px 0;
         }
@@ -194,7 +193,7 @@
             gap: 50px;
         }
 
-        /* --- Contact Info Block --- */
+       
         .contact-info h3 {
             font-size: 1.8rem;
             margin-bottom: 20px;
@@ -228,7 +227,7 @@
             color: #666;
         }
 
-        /* --- Contact Form --- */
+        
         .contact-form h3 {
             font-size: 1.8rem;
             margin-bottom: 20px;
@@ -278,10 +277,10 @@
             opacity: 0.9;
         }
 
-        /* --- Map Section --- */
+        
         .map-section {
             height: 400px;
-            background-color: #e9ecef; /* Placeholder background */
+            background-color: #e9ecef; 
             display: flex;
             align-items: center;
             justify-content: center;
@@ -290,7 +289,7 @@
             font-weight: 500;
         }
         
-        /* --- Back to Home Button --- */
+        
         .back-to-home {
             padding: 80px 0;
             text-align: center;
@@ -316,7 +315,7 @@
             margin-right: 8px;
         }
 
-        /* --- Footer --- */
+        
         footer {
             background-color: var(--dark-bg);
             color: var(--light-text);
@@ -324,20 +323,20 @@
             padding: 20px;
         }
         .logo a {
-            display: flex; /* Aligns image and text side-by-side */
-            align-items: center; /* Vertically centers them */
-            gap: 10px; /* Adds a small space between the logo and text */
+            display: flex; 
+            align-items: center; 
+            gap: 10px;
             font-size: 1.8rem;
             font-weight: 700;
             color: var(--dark-bg);
         }
 
         .logo img {
-            height: 40px; /* Adjust the height of your logo as needed */
+            height: 40px;
             width: auto;
         }
 
-        /* --- Responsive Adjustments --- */
+      
         @media (max-width: 992px) {
             .contact-grid {
                 grid-template-columns: 1fr;
@@ -379,16 +378,16 @@
     </header>
 
     <main>
-        <!-- Page Hero Section -->
+        
         <section class="page-hero">
             <h1>Get In Touch</h1>
         </section>
 
-        <!-- Contact Section -->
+       
         <section class="contact-section">
             <div class="container">
                 <div class="contact-grid">
-                    <!-- Left Side: Contact Info -->
+                    
                     <div class="contact-info">
                         <h3>Contact Information</h3>
                         <p>Have a question or need assistance? Reach out to us. We're here to help you on your journey to find the perfect home.</p>
@@ -414,7 +413,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Right Side: Contact Form -->
+
                     <div class="contact-form">
                         <h3>Send Us a Message</h3>
                         <form action="#">
@@ -441,8 +440,7 @@
             </div>
         </section>
 
-        <!-- Map Section -->
-        <!-- Map Section -->
+
 <div class="map-section">
     <iframe 
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3429.1234567890123!2d76.72345678901234!3d30.72345678901234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390feb1b3c5b5b5b%3A0x1234567890123456!2sMohali%2C%20Punjab%2C%20India!5e0!3m2!1sen!2sin!4v1678886400000!5m2!1sen!2sin" 
@@ -456,7 +454,7 @@
 </div>
 
 
-        <!-- Back to Home Button -->
+
         <section class="back-to-home">
             <div class="container">
                 <a href="index.html" class="home-button">
@@ -471,7 +469,7 @@
     </footer>
 
     <script>
-    // Update navigation based on login status
+
     document.addEventListener('DOMContentLoaded', function() {
         const loginLink = document.getElementById('loginLink');
         const loginIcon = document.getElementById('loginIcon');
@@ -480,7 +478,7 @@
         const role = localStorage.getItem('role') || 'user';
         
         if (username) {
-            // User is logged in - show enhanced profile icon
+
             loginIcon.className = 'fas fa-user-circle';
             loginIcon.style.fontSize = '1.4rem';
             loginIcon.style.color = 'var(--primary-color)';
@@ -488,13 +486,13 @@
             if (role === 'landlord') {
                 loginLink.href = 'landlord.html';
                 loginLink.title = 'Landlord Profile';
-                loginIcon.style.color = '#ff6b35'; // Different color for landlord
+                loginIcon.style.color = '#ff6b35'; 
             } else {
                 loginLink.href = 'profile.html';
                 loginLink.title = 'User Profile';
             }
             
-            // Show dropdown menu on hover over icon and keep it open when hovering dropdown
+          
             const profileDropdown = document.getElementById('profileDropdown');
             let hoverTimeout;
             
@@ -514,7 +512,7 @@
             profileDropdown.addEventListener('mouseenter', showDropdown);
             profileDropdown.addEventListener('mouseleave', hideDropdown);
             
-            // Sign out functionality
+       
             document.getElementById('signoutBtn').addEventListener('click', (e) => {
                 e.preventDefault();
                 localStorage.removeItem('username');
@@ -525,7 +523,7 @@
             });
             
         } else {
-            // User is not logged in - show text only
+ 
             loginIcon.style.display = 'none';
             loginText.style.display = 'inline';
             loginText.textContent = 'Log in';

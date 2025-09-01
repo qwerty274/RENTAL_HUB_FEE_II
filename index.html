@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HomeSpot - Find Your Perfect Rental Home</title>
-    <!-- Google Fonts (Poppins) -->
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for Icons -->
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <style>
-    /* --- Basic Reset & Global Styles --- */
+    
     * {
         margin: 0;
         padding: 0;
@@ -19,7 +19,7 @@
     }
 
     :root {
-        --primary-color: #d90429; /* A strong red */
+        --primary-color: #d90429; 
         --dark-bg: #2b2d42;
         --light-text: #edf2f4;
         --dark-text: #333;
@@ -47,7 +47,7 @@
         list-style: none;
     }
 
-    /* --- Header & Navigation --- */
+    
     header {
         background: #fff;
         padding: 1rem 0;
@@ -94,7 +94,7 @@
         color: var(--primary-color);
         }
 
-        /* Enhanced Profile Icon Styles */
+       
         #loginIcon {
             font-size: 1.2rem;
             transition: all 0.3s ease;
@@ -114,7 +114,7 @@
             transition: all 0.3s ease;
         }
 
-        /* Profile Dropdown Menu */
+        
         .profile-dropdown {
             position: absolute;
             top: 100%;
@@ -165,7 +165,7 @@
             color: #721c24;
         }
 
-    /* --- Hero Section --- */
+    
     .hero {
         height: 70vh;
         background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
@@ -207,7 +207,7 @@
         transform: translateY(-2px);
     }
 
-    /* --- Info Bar Section --- */
+    
     .info-bar {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -240,7 +240,7 @@
         font-weight: 600;
     }
 
-    /* --- Featured Listings Section (MODIFIED FOR AUTO-SLIDER) --- */
+   
     .featured-listings {
         padding: 80px 0;
         background: var(--secondary-bg);
@@ -253,38 +253,38 @@
         color: var(--dark-bg);
     }
 
-    /* Keyframes for the scrolling animation */
+   
     @keyframes auto-scroll {
         0% {
             transform: translateX(0);
         }
         100% {
-            /* Moves the slider by the width of the first set of items */
+            
             transform: translateX(calc(-370px * 6)); 
         }
     }
 
     .slider-container {
-        overflow: hidden; /* Hides the cards that are outside the container */
+        overflow: hidden; 
         position: relative;
     }
     
     .listings-slider {
         display: flex;
-        /* Width is calculated based on card width (340px) + gap (30px) = 370px */
-        width: calc(370px * 12); /* Total width for all cards (original + duplicates) */
-        animation: auto-scroll 30s linear infinite; /* Applies the animation */
+
+        width: calc(370px * 12); 
+        animation: auto-scroll 30s linear infinite;
     }
     
-    /* Pause animation on hover */
+    
     .listings-slider:hover {
       animation-play-state: paused;
     }
 
     .property-card {
         flex-shrink: 0;
-        width: 340px; /* Fixed width for each card */
-        margin-right: 30px; /* Gap between cards */
+        width: 340px;
+        margin-right: 30px; 
         background: #fff;
         border-radius: 8px;
         overflow: hidden;
@@ -300,7 +300,7 @@
         display: block;
     }
     
-    /* Address and phone hover overlay */
+
     .property-card::after {
         content: attr(data-address) "\A" attr(data-phone);
         position: absolute;
@@ -359,43 +359,43 @@
         color: var(--primary-color);
     }
 
-    /* --- Footer --- */
+  
     footer {
         background-color: var(--dark-bg);
         color: var(--light-text);
         text-align: center;
         padding: 20px;
     }
-    /* Add these new styles for the logo image */
+
     .logo a {
-        display: flex; /* Aligns image and text side-by-side */
-        align-items: center; /* Vertically centers them */
-        gap: 10px; /* Adds a small space between the logo and text */
+        display: flex; 
+        align-items: center; 
+        gap: 10px;
         font-size: 1.8rem;
         font-weight: 700;
         color: var(--dark-bg);
     }
 
     .logo img {
-        height: 40px; /* Adjust the height of your logo as needed */
+        height: 40px; 
         width: auto;
     }
 .property-card {
-  position: relative; /* Needed so fav-button is positioned relative to card */
+  position: relative; 
 }
 
 .fav-button {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: rgba(0, 0, 0, 0.4); /* semi-transparent dark background */
+  background: rgba(0, 0, 0, 0.4); 
   border-radius: 50%;
   border: none;
   padding: 6px;
   font-size: 26px;
   cursor: pointer;
-  color: #ffd700; /* bright gold */
-  text-shadow: 0 0 5px #b8860b; /* subtle glow */
+  color: #ffd700; 
+  text-shadow: 0 0 5px #b8860b;
   transition: background 0.3s ease, color 0.3s ease;
 }
 
@@ -410,7 +410,7 @@
 }
 
 
-    /* --- Responsive Adjustments --- */
+
     @media (max-width: 768px) {
         .hero-content h1 {
             font-size: 2.5rem;
@@ -419,7 +419,7 @@
             grid-template-columns: 1fr;
         }
         nav ul {
-            display: none; /* For a real site, implement a hamburger menu here */
+            display: none; 
         }
     }
 
@@ -483,7 +483,7 @@
     </header>
 
     <main>
-        <!-- Hero Section -->
+
         <section class="hero">
             <div class="hero-content">
                 <h1>Find Your Perfect <span class="highlight-text">Rental Home</span> in Punjab</h1>
@@ -492,7 +492,7 @@
             </div>
         </section>
 
-        <!-- Info Bar Section -->
+
         <section class="info-bar">
             <div class="info-item">
                 <i class="fas fa-phone"></i>
@@ -512,22 +512,21 @@
         </section>
         <section class="favourites-listings">
   <div class="container">
-    <!-- <h2>Your Favourites</h2> -->
+
     <div id="favourites-container" class="listings-slider">
-      <!-- Favourite cards will appear here -->
+
     </div>
   </div>
 </section>
 
 
-     <!-- Featured Listings Section -->
 <section class="featured-listings">
   <div class="container">
     <h2>Featured Properties in Punjab</h2>
     <div class="slider-container">
-      <!-- The list of properties is duplicated below to create the seamless loop -->
+
       <div class="listings-slider">
-        <!-- Original Set of Properties -->
+
         <div class="property-card" data-address="125 Model Town, Ludhiana, Punjab" data-phone="+91 98765-43210">
           <a href="L1.html">
             <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2070&auto=format&fit=crop" alt="Modern Punjabi Villa">
@@ -588,7 +587,7 @@
           </div>
         </div>
 
-        <!-- Duplicate set for infinite loop (with Book Now too) -->
+
         <div class="property-card" data-address="125 Model Town, Ludhiana, Punjab" data-phone="+91 98765-43210">
           <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2070&auto=format&fit=crop" alt="Modern Punjabi Villa">
           <div class="card-content">
@@ -654,15 +653,14 @@
     </footer>
     <script>
 document.addEventListener('DOMContentLoaded', () => {
-  // Update navigation based on login status
   const loginLink = document.getElementById('loginLink');
   const loginIcon = document.getElementById('loginIcon');
   const loginText = document.getElementById('loginText');
   const username = localStorage.getItem('username');
   const role = localStorage.getItem('role') || 'user';
   
+
   if (username) {
-    // User is logged in - show enhanced profile icon
     loginIcon.className = 'fas fa-user-circle';
     loginIcon.style.fontSize = '1.4rem';
     loginIcon.style.color = 'var(--primary-color)';
@@ -670,13 +668,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (role === 'landlord') {
       loginLink.href = 'landlord.html';
       loginLink.title = 'Landlord Profile';
-      loginIcon.style.color = '#ff6b35'; // Different color for landlord
+      loginIcon.style.color = '#ff6b35';
     } else {
       loginLink.href = 'profile.html';
       loginLink.title = 'User Profile';
     }
     
-    // Show dropdown menu on hover over icon and keep it open when hovering dropdown
+ 
     const profileDropdown = document.getElementById('profileDropdown');
     let hoverTimeout;
     
@@ -696,7 +694,7 @@ document.addEventListener('DOMContentLoaded', () => {
     profileDropdown.addEventListener('mouseenter', showDropdown);
     profileDropdown.addEventListener('mouseleave', hideDropdown);
     
-    // Sign out functionality
+
     document.getElementById('signoutBtn').addEventListener('click', (e) => {
       e.preventDefault();
       localStorage.removeItem('username');
@@ -707,7 +705,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
   } else {
-    // User is not logged in - show text only
     loginIcon.style.display = 'none';
     loginText.style.display = 'inline';
     loginText.textContent = 'Log in';
@@ -717,35 +714,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const favButtons = document.querySelectorAll('.fav-button');
 
-  // Load favorites from localStorage or empty array
+
   const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
-  // Function to save favorites to localStorage
   function saveFavorites(favs) {
     localStorage.setItem('favorites', JSON.stringify(favs));
   }
 
-  // Update UI on page load to show stars filled if already favorited
+
   favButtons.forEach(btn => {
     const card = btn.closest('.property-card');
-    const id = card.dataset.address; // Use address as unique id
+    const id = card.dataset.address;
 
     if (favorites.some(fav => fav.dataAddress === id)) {
-      btn.textContent = '⭐'; // Filled star
+      btn.textContent = '⭐'; 
       btn.classList.add('favorited');
     } else {
-      btn.textContent = '☆'; // Empty star
+      btn.textContent = '☆'; 
       btn.classList.remove('favorited');
     }
   });
 
-  // Add click listeners to toggle favorite
+  
   favButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const card = btn.closest('.property-card');
       const id = card.dataset.address;
 
-      // Collect property data
+      
       const propertyData = {
         dataAddress: id,
         dataPhone: card.dataset.phone,
@@ -761,12 +757,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const index = favorites.findIndex(fav => fav.dataAddress === id);
 
       if (index > -1) {
-        // Remove from favorites
+        
         favorites.splice(index, 1);
         btn.textContent = '☆';
         btn.classList.remove('favorited');
       } else {
-        // Add to favorites
+       
         favorites.push(propertyData);
         btn.textContent = '⭐';
         btn.classList.add('favorited');
